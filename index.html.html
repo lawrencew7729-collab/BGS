@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BGS ELECTRICAL TRADING</title>
+    <meta name="description" content="Supplier for Cables, Pipes, and Electrical Accessories" />
+    
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Catamaran:wght@500;800&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Catamaran', sans-serif;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+        
+        /* Tiffany Blue Colors */
+        .text-theme { color: #0ABAB5; }
+        .bg-theme { background-color: #0ABAB5; }
+        .border-theme { border-color: #0ABAB5; }
+        .hover-text-theme:hover { color: #0ABAB5; }
+        .hover-bg-theme:hover { background-color: #099E9A; }
+
+        /* Custom Corner Cuts */
+        .cut-corner {
+            border-top-left-radius: 2rem;
+            border-bottom-right-radius: 2rem;
+            border-top-right-radius: 0.25rem;
+            border-bottom-left-radius: 0.25rem;
+        }
+
+        /* Rainbow Shine Animation */
+        .rainbow-shine-wrapper {
+            position: relative;
+            overflow: hidden;
+            display: inline-flex;
+        }
+        .rainbow-shine-wrapper::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -150%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(255, 0, 0, 0.4) 15%, 
+                rgba(255, 165, 0, 0.4) 30%, 
+                rgba(255, 255, 0, 0.4) 45%, 
+                rgba(0, 128, 0, 0.4) 60%, 
+                rgba(0, 0, 255, 0.4) 75%, 
+                rgba(238, 130, 238, 0.4) 90%, 
+                transparent 100%);
+            transform: skewX(-25deg);
+            animation: rainbowShine 5s infinite;
+            pointer-events: none; /* Prevents blocking clicks */
+            z-index: 20;
+        }
+        @keyframes rainbowShine {
+            0% { left: -150%; }
+            20% { left: 150%; }
+            100% { left: 150%; }
+        }
+
+        /* Animation Base Classes */
+        .animate-on-scroll {
+            opacity: 0;
+            visibility: hidden;
+            will-change: transform, opacity;
+        }
+
+        /* Slide In Up */
+        .slide-up.is-visible {
+            animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            visibility: visible;
+        }
+
+        /* Slide In Left */
+        .slide-left.is-visible {
+            animation: slideLeft 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            visibility: visible;
+        }
+
+        /* Slide In Right */
+        .slide-right.is-visible {
+            animation: slideRight 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            visibility: visible;
+        }
+
+        /* Animation Keyframes */
+        @keyframes slideUp {
+            0% { opacity: 0; transform: translateY(40px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes slideLeft {
+            0% { opacity: 0; transform: translateX(-50px); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes slideRight {
+            0% { opacity: 0; transform: translateX(50px); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+
+        /* Delays for staggered animations */
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
+
+        /* Continuous Float Animation for Brands */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+            100% { transform: translateY(0px); }
+        }
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="text-gray-800 bg-gray-50 flex flex-col min-h-screen">
+
+    <!-- Navigation -->
+    <header class="bg-white shadow-md fixed w-full z-50 top-0">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="flex justify-between items-center h-16 md:h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center cursor-pointer rainbow-shine-wrapper" onclick="showPage('home')">
+                    <img class="h-10 md:h-12 w-auto relative z-10" src="https://i.imgur.com/5DpoVhr.png" alt="BGS ELECTRICAL TRADING">
+                </div>
+                
+                <!-- Desktop Menu -->
+                <nav class="hidden md:flex space-x-8">
+                    <button onclick="showPage('home')" class="text-gray-700 hover-text-theme px-3 py-2 font-medium text-lg uppercase transition-colors">Home</button>
+                    <button onclick="showPage('about')" class="text-gray-700 hover-text-theme px-3 py-2 font-medium text-lg uppercase transition-colors">About Us</button>
+                    <button onclick="showPage('products')" class="text-gray-700 hover-text-theme px-3 py-2 font-medium text-lg uppercase transition-colors">Products</button>
+                </nav>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button onclick="toggleMobileMenu()" class="text-gray-700 hover:text-gray-900 focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu Dropdown -->
+            <div id="mobile-menu" class="absolute right-4 sm:right-6 top-full w-48 bg-white border border-[#0ABAB5] border-t-0 shadow-lg rounded-b-lg overflow-hidden transition-all duration-300 ease-out origin-top transform scale-y-0 opacity-0 md:hidden flex flex-col z-50">
+                <button onclick="showPage('home')" class="w-full text-left px-4 py-3 text-sm text-gray-700 hover-text-theme font-medium uppercase border-b border-gray-100">Home</button>
+                <button onclick="showPage('about')" class="w-full text-left px-4 py-3 text-sm text-gray-700 hover-text-theme font-medium uppercase border-b border-gray-100">About Us</button>
+                <button onclick="showPage('products')" class="w-full text-left px-4 py-3 text-sm text-gray-700 hover-text-theme font-medium uppercase">Products</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="flex-grow pt-16 md:pt-20">
+        
+        <!-- ================= HOME SECTION ================= -->
+        <section id="home" class="page-section active">
+            
+            <div class="flex flex-col md:relative md:h-[80vh] md:items-center md:justify-center bg-gray-900 overflow-hidden">
+                <!-- Hero Background Video: Fit to screen on mobile, cover on desktop -->
+                <div class="w-full relative aspect-video md:aspect-auto md:absolute md:inset-0 md:h-full z-0">
+                    <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover">
+                        <source src="https://i.imgur.com/mtxGWxH.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <!-- Overlay -->
+                    <div class="hidden md:block absolute inset-0 bg-black bg-opacity-60 z-10"></div>
+                </div>
+
+                <!-- Content: Normal flow below video on mobile, absolute center on desktop -->
+                <div class="relative z-20 text-center px-4 py-12 md:py-0 w-full max-w-4xl mx-auto md:bg-transparent bg-gray-900 animate-on-scroll slide-up">
+                    <h1 class="text-[1.75rem] leading-tight md:text-6xl font-extrabold text-white mb-4 md:mb-6 uppercase tracking-wider">
+                        Powering Your Future
+                    </h1>
+                    <p class="text-sm leading-relaxed md:text-2xl text-gray-200 mb-6 md:mb-8 font-medium">
+                        BGS ELECTRICAL TRADING is your premier supplier for highly reliable cables, pipes, and electrical accessories.
+                    </p>
+                    <button onclick="showPage('products')" class="bg-theme text-white text-sm md:text-lg px-6 py-2 md:px-8 md:py-3 rounded font-bold uppercase tracking-wide hover-bg-theme transition-colors shadow-lg">
+                        Explore Products
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Quick Features (Overlapping Layout) -->
+            <div class="bg-gray-50 pb-8 md:pb-16">
+                <!-- Changed md:-mt-24 to md:mt-8 to move features below video on desktop -->
+                <div class="relative z-30 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 md:mt-8">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 text-left md:text-center">
+                        
+                        <div class="bg-white p-4 md:p-6 border shadow-xl cut-corner hover:-translate-y-2 transition-transform duration-300 flex items-center md:block animate-on-scroll slide-up delay-100">
+                            <div class="flex-shrink-0 w-12 md:w-auto md:mb-4 flex justify-center text-theme">
+                                <i class="fas fa-shield-alt text-2xl md:text-4xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-base md:text-xl font-bold mb-1 md:mb-2 uppercase text-gray-900">Reliable Quality</h3>
+                                <p class="text-xs md:text-base text-gray-600">Tested and certified electrical supplies for maximum safety and performance.</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-4 md:p-6 border shadow-xl cut-corner hover:-translate-y-2 transition-transform duration-300 flex items-center md:block animate-on-scroll slide-up delay-200">
+                            <div class="flex-shrink-0 w-12 md:w-auto md:mb-4 flex justify-center text-theme">
+                                <i class="fas fa-truck text-2xl md:text-4xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-base md:text-xl font-bold mb-1 md:mb-2 uppercase text-gray-900">Fast Delivery</h3>
+                                <p class="text-xs md:text-base text-gray-600">Efficient logistics ensuring your project materials arrive on time.</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-4 md:p-6 border shadow-xl cut-corner hover:-translate-y-2 transition-transform duration-300 flex items-center md:block animate-on-scroll slide-up delay-300">
+                            <div class="flex-shrink-0 w-12 md:w-auto md:mb-4 flex justify-center text-theme">
+                                <i class="fas fa-handshake text-2xl md:text-4xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-base md:text-xl font-bold mb-1 md:mb-2 uppercase text-gray-900">Expert Support</h3>
+                                <p class="text-xs md:text-base text-gray-600">Dedicated team providing professional technical advice and assistance.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= BRANDS SECTION ================= -->
+            <div id="brands-section" class="bg-gray-50 pt-8 pb-12 md:pt-12 md:pb-24">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <!-- Title -->
+                    <div class="text-center mb-8 md:mb-12 animate-on-scroll slide-up">
+                        <h2 class="text-2xl md:text-4xl font-extrabold text-gray-900 uppercase">Trusted Brands</h2>
+                        <div class="w-16 md:w-24 h-1 bg-theme mx-auto mt-3 md:mt-4"></div>
+                    </div>
+                    
+                    <!-- Floating Container for Brands -->
+                    <div class="relative w-full max-w-6xl mx-auto shadow-2xl animate-on-scroll slide-up delay-100 cut-corner overflow-hidden group">
+                        <!-- Background Layer: Tiffany Blue & White Split -->
+                        <div class="absolute inset-0 pointer-events-none" style="background: linear-gradient(135deg, #0ABAB5 35%, #ffffff 35%);"></div>
+                        
+                        <!-- Image Layer with Continuous Float Effect -->
+                        <div class="relative z-10 w-full px-4 py-12 md:px-12 md:py-16 flex justify-center items-center animate-float">
+                            <!-- Removed height restrictions, let image width expand naturally -->
+                            <img src="https://i.imgur.com/z2oqttQ.png" alt="Partner Brands" class="w-full h-auto object-contain hover:scale-105 transition-transform duration-500 drop-shadow-2xl cursor-pointer">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ================= END BRANDS SECTION ================= -->
+            
+        </section>
+
+        <!-- ================= ABOUT US SECTION ================= -->
+        <section id="about" class="page-section hidden overflow-hidden">
+            <div class="bg-gray-100 py-12 md:py-24">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    
+                    <div class="flex flex-col md:flex-row gap-12 md:gap-16 items-center">
+                        <!-- Left Column: Unified Module with Overlap -->
+                        <div class="md:w-5/12 flex flex-col space-y-6 md:space-y-8 animate-on-scroll slide-left">
+                            <div>
+                                <h4 class="text-xs md:text-sm font-bold text-theme uppercase tracking-widest mb-1 md:mb-2">Discover Our Story</h4>
+                                <h2 class="text-3xl md:text-5xl font-extrabold text-gray-900 uppercase leading-tight">
+                                    About BGS<br>Electrical Trading
+                                </h2>
+                            </div>
+                            
+                            <!-- Overlapping Image Container -->
+                            <div class="relative w-full sm:w-4/5 mt-4">
+                                <!-- Decorative overlap block -->
+                                <div class="absolute top-4 -left-4 w-full h-full bg-theme opacity-20 cut-corner"></div>
+                                <img src="https://i.imgur.com/DfM3GA0.jpg" alt="BGS Electrical Trading Team" class="relative z-10 w-full h-auto shadow-2xl object-cover cut-corner border-4 border-white">
+                            </div>
+                        </div>
+
+                        <!-- Right Column: Text Content -->
+                        <div class="md:w-7/12 flex flex-col justify-center space-y-6 md:space-y-8 animate-on-scroll slide-right">
+                            <p class="text-sm md:text-lg text-gray-700 leading-relaxed">
+                                <strong class="text-gray-900 font-bold text-xl">BGS ELECTRICAL TRADING</strong> is an established electrical supplier committed to providing top-quality cables, piping, and general electrical components to contractors, developers, and retailers across the region.
+                            </p>
+                            <p class="text-sm md:text-lg text-gray-700 leading-relaxed">
+                                We pride ourselves on offering a comprehensive range of certified products including Fire Resistant Cables, Armoured Cables, PVC Insulated Cables, and heavy-duty pipes designed to meet strict safety and industry standards.
+                            </p>
+                            
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 mt-4">
+                                <div class="bg-white p-5 md:p-8 shadow-md border-l-4 border-theme cut-corner transition-transform hover:-translate-y-1">
+                                    <h4 class="text-lg md:text-2xl font-bold text-gray-900 mb-2 uppercase">Our Vision</h4>
+                                    <p class="text-xs md:text-base text-gray-600">To be the most trusted and preferred partner in the electrical supply chain industry, recognized for integrity and excellence.</p>
+                                </div>
+                                <div class="bg-white p-5 md:p-8 shadow-md border-l-4 border-theme cut-corner transition-transform hover:-translate-y-1">
+                                    <h4 class="text-lg md:text-2xl font-bold text-gray-900 mb-2 uppercase">Our Mission</h4>
+                                    <p class="text-xs md:text-base text-gray-600">To consistently deliver safe, innovative, and cost-effective electrical solutions while prioritizing customer satisfaction.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= PRODUCTS SECTION ================= -->
+        <section id="products" class="page-section hidden overflow-hidden">
+            <!-- Cables Category -->
+            <div class="py-12 md:py-20 bg-white">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-10 md:mb-16 animate-on-scroll slide-up">
+                        <h2 class="text-3xl md:text-5xl font-extrabold text-gray-900 uppercase">Cables</h2>
+                        <div class="w-16 md:w-24 h-1 bg-theme mx-auto mt-3 md:mt-4"></div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+                        <div class="bg-white border shadow-md hover:shadow-2xl cut-corner transition-all duration-300 flex flex-col group animate-on-scroll slide-up delay-100">
+                            <div class="overflow-hidden cut-corner rounded-b-none">
+                                <img src="https://unijaya.com.my/web/wp-content/uploads/2020/09/4-pipes.jpg" alt="Fire Resistant Cables" class="w-full h-48 md:h-64 object-cover group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <div class="p-5 md:p-8 flex-grow flex flex-col justify-between">
+                                <div>
+                                    <h4 class="text-lg md:text-xl font-bold text-gray-900 mb-2 md:mb-3 uppercase">Fire Resistant Cables</h4>
+                                    <p class="text-xs md:text-base text-gray-600 mb-4 md:mb-6">Designed with specification, manufactured with integrity, and prioritizes safety.</p>
+                                </div>
+                                <a href="#" class="inline-block border-2 border-theme text-theme font-bold uppercase px-4 py-2 text-xs md:text-sm hover:bg-[#0ABAB5] hover:text-white transition-colors text-center w-max cut-corner">View Specs</a>
+                            </div>
+                        </div>
+
+                        <div class="bg-white border shadow-md hover:shadow-2xl cut-corner transition-all duration-300 flex flex-col group animate-on-scroll slide-up delay-200">
+                            <div class="overflow-hidden cut-corner rounded-b-none">
+                                <img src="https://unijaya.com.my/web/wp-content/uploads/2020/09/8-pipes.jpg" alt="Armoured Cable" class="w-full h-48 md:h-64 object-cover group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <div class="p-5 md:p-8 flex-grow flex flex-col justify-between">
+                                <div>
+                                    <h4 class="text-lg md:text-xl font-bold text-gray-900 mb-2 md:mb-3 uppercase">Armoured Cable</h4>
+                                    <p class="text-xs md:text-base text-gray-600 mb-4 md:mb-6">Heavy-duty protection for underground and harsh environment installations.</p>
+                                </div>
+                                <a href="#" class="inline-block border-2 border-theme text-theme font-bold uppercase px-4 py-2 text-xs md:text-sm hover:bg-[#0ABAB5] hover:text-white transition-colors text-center w-max cut-corner">View Specs</a>
+                            </div>
+                        </div>
+
+                        <div class="bg-white border shadow-md hover:shadow-2xl cut-corner transition-all duration-300 flex flex-col group animate-on-scroll slide-up delay-300">
+                            <div class="overflow-hidden cut-corner rounded-b-none border-b">
+                                <img src="https://unijaya.com.my/web/wp-content/uploads/2020/09/coming-soon.jpg" alt="PVC Insulated Cable" class="w-full h-48 md:h-64 object-cover group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <div class="p-5 md:p-8 flex-grow flex flex-col justify-between">
+                                <div>
+                                    <h4 class="text-lg md:text-xl font-bold text-gray-900 mb-2 md:mb-3 uppercase">PVC Insulated Cable</h4>
+                                    <p class="text-xs md:text-base text-gray-600 mb-4 md:mb-6">Standard internal wiring solutions for domestic and commercial use.</p>
+                                </div>
+                                <a href="#" class="inline-block border-2 border-theme text-theme font-bold uppercase px-4 py-2 text-xs md:text-sm hover:bg-[#0ABAB5] hover:text-white transition-colors text-center w-max cut-corner">View Specs</a>
+                            </div>
+                        </div>
+
+                        <div class="bg-white border shadow-md hover:shadow-2xl cut-corner transition-all duration-300 flex flex-col group animate-on-scroll slide-up delay-100">
+                            <div class="overflow-hidden cut-corner rounded-b-none">
+                                <img src="https://unijaya.com.my/web/wp-content/uploads/2020/09/fajar_cable.jpg" alt="Fajar Cables" class="w-full h-48 md:h-64 object-cover group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <div class="p-5 md:p-8 flex-grow flex flex-col justify-between">
+                                <div>
+                                    <h4 class="text-lg md:text-xl font-bold text-gray-900 mb-2 md:mb-3 uppercase">Fajar Cables</h4>
+                                    <p class="text-xs md:text-base text-gray-600 mb-4 md:mb-6">Reliable / Safe / Eco-Friendly cabling options.</p>
+                                </div>
+                                <a href="#" class="inline-block border-2 border-theme text-theme font-bold uppercase px-4 py-2 text-xs md:text-sm hover:bg-[#0ABAB5] hover:text-white transition-colors text-center w-max cut-corner">View Specs</a>
+                            </div>
+                        </div>
+
+                        <div class="bg-white border shadow-md hover:shadow-2xl cut-corner transition-all duration-300 flex flex-col group animate-on-scroll slide-up delay-200">
+                            <div class="overflow-hidden cut-corner rounded-b-none">
+                                <img src="https://unijaya.com.my/web/wp-content/uploads/2020/11/abc_cable.jpg" alt="Bare Conductor" class="w-full h-48 md:h-64 object-cover group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <div class="p-5 md:p-8 flex-grow flex flex-col justify-between">
+                                <div>
+                                    <h4 class="text-lg md:text-xl font-bold text-gray-900 mb-2 md:mb-3 uppercase">Bare Conductor</h4>
+                                    <p class="text-xs md:text-base text-gray-600 mb-4 md:mb-6">& Aerial Bundle Cables for overhead power transmission.</p>
+                                </div>
+                                <a href="#" class="inline-block border-2 border-theme text-theme font-bold uppercase px-4 py-2 text-xs md:text-sm hover:bg-[#0ABAB5] hover:text-white transition-colors text-center w-max cut-corner">View Specs</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pipes Category -->
+            <div class="py-12 md:py-20 bg-gray-50 border-t">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-10 md:mb-16 animate-on-scroll slide-up">
+                        <h2 class="text-3xl md:text-5xl font-extrabold text-gray-900 uppercase">Pipes and Cable Trunking</h2>
+                        <div class="w-16 md:w-24 h-1 bg-theme mx-auto mt-3 md:mt-4"></div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+                        <div class="bg-white border shadow-md hover:shadow-2xl cut-corner transition-all duration-300 flex flex-col group animate-on-scroll slide-up delay-100">
+                            <div class="overflow-hidden cut-corner rounded-b-none">
+                                <img src="https://unijaya.com.my/web/wp-content/uploads/2020/09/1-pipes.jpg" alt="HDPE Double Wall Corrugated Pipes" class="w-full h-48 md:h-64 object-cover group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <div class="p-5 md:p-8 flex-grow flex flex-col justify-between">
+                                <div>
+                                    <h4 class="text-lg md:text-xl font-bold text-gray-900 mb-2 md:mb-3 uppercase">HDPE Corrugated Pipes</h4>
+                                    <p class="text-xs md:text-base text-gray-600 mb-4 md:mb-6">Tested and certified by TNB Research Sdn Bhd and SIRIM QAS International Sdn Bhd.</p>
+                                </div>
+                                <a href="#" class="inline-block border-2 border-theme text-theme font-bold uppercase px-4 py-2 text-xs md:text-sm hover:bg-[#0ABAB5] hover:text-white transition-colors text-center w-max cut-corner">View Specs</a>
+                            </div>
+                        </div>
+
+                        <div class="bg-white border shadow-md hover:shadow-2xl cut-corner transition-all duration-300 flex flex-col group animate-on-scroll slide-up delay-200">
+                            <div class="overflow-hidden cut-corner rounded-b-none">
+                                <img src="https://unijaya.com.my/web/wp-content/uploads/2020/09/5-pipes.jpg" alt="PVC Conduit Pipe / Fittings" class="w-full h-48 md:h-64 object-cover group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <div class="p-5 md:p-8 flex-grow flex flex-col justify-between">
+                                <div>
+                                    <h4 class="text-lg md:text-xl font-bold text-gray-900 mb-2 md:mb-3 uppercase">PVC Conduit Pipe / Fittings</h4>
+                                    <p class="text-xs md:text-base text-gray-600 mb-4 md:mb-6">Durable conduit solutions for safe wire routing and protection.</p>
+                                </div>
+                                <a href="#" class="inline-block border-2 border-theme text-theme font-bold uppercase px-4 py-2 text-xs md:text-sm hover:bg-[#0ABAB5] hover:text-white transition-colors text-center w-max cut-corner">View Specs</a>
+                            </div>
+                        </div>
+
+                        <div class="bg-white border shadow-md hover:shadow-2xl cut-corner transition-all duration-300 flex flex-col group animate-on-scroll slide-up delay-300">
+                            <div class="overflow-hidden cut-corner rounded-b-none">
+                                <img src="https://unijaya.com.my/web/wp-content/uploads/2020/09/6-steel.jpg" alt="Steel Accessories" class="w-full h-48 md:h-64 object-cover group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <div class="p-5 md:p-8 flex-grow flex flex-col justify-between">
+                                <div>
+                                    <h4 class="text-lg md:text-xl font-bold text-gray-900 mb-2 md:mb-3 uppercase">Steel Accessories</h4>
+                                    <p class="text-xs md:text-base text-gray-600 mb-4 md:mb-6">Steel Surface Cable Trunking<br>Steel Perforated Cable Tray<br>Steel Cable Ladder.</p>
+                                </div>
+                                <a href="#" class="inline-block border-2 border-theme text-theme font-bold uppercase px-4 py-2 text-xs md:text-sm hover:bg-[#0ABAB5] hover:text-white transition-colors text-center w-max cut-corner">View Specs</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="bg-gray-900 text-white pt-12 md:pt-16 pb-6 md:pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 mb-8 md:mb-12 border-b border-gray-700 pb-8 md:pb-12">
+                
+                <!-- HQ Details -->
+                <div class="col-span-1 md:col-span-2">
+                    <h3 class="text-xl md:text-2xl font-bold text-theme mb-1 md:mb-2 uppercase">Headquarters</h3>
+                    <h5 class="text-base md:text-xl font-bold mb-3 md:mb-4">BGS ELECTRICAL TRADING</h5>
+                    <ul class="space-y-3 md:space-y-4 text-sm md:text-base">
+                        <li class="flex items-start group">
+                            <i class="fas fa-map-marker-alt mt-1 mr-3 text-theme group-hover:text-white transition-colors"></i>
+                            <a href="https://share.google/1VnbId9NKNUcbdIfD" target="_blank" class="hover-text-theme transition-colors text-gray-300">
+                                2719, Jalan Permata 4, Taman Permata,<br> 
+                                53300 Kuala Lumpur,<br>
+                                Wilayah Persekutuan Kuala Lumpur
+                            </a>
+                        </li>
+                        <li class="flex items-center group">
+                            <i class="fas fa-phone-alt mr-3 text-theme group-hover:text-white transition-colors"></i>
+                            <a href="tel:0341613968" class="hover-text-theme transition-colors text-gray-300">03-4161 3968</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Operation Hours -->
+                <div>
+                    <h3 class="text-xl md:text-2xl font-bold text-theme mb-3 md:mb-4 uppercase">Operation Hours</h3>
+                    <ul class="space-y-2 md:space-y-3 text-gray-300 text-sm md:text-base">
+                        <li class="flex items-center">
+                            <i class="far fa-clock mr-3 text-theme"></i>
+                            <span>Mon - Fri : 8:30am - 6:00pm</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="far fa-clock mr-3 text-theme"></i>
+                            <span>Saturday : 8:30am - 5:00pm</span>
+                        </li>
+                    </ul>
+                    <p class="mt-3 md:mt-4 text-xs md:text-sm text-gray-400 italic">
+                        Sunday is opening alternatively, please contact us in advance to check our availability.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div class="flex flex-col md:flex-row justify-between items-center text-xs md:text-sm text-gray-400 text-center md:text-left">
+                <p>Copyright &copy; 2026 BGS ELECTRICAL TRADING. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/60122997839" target="_blank" class="fixed bottom-6 right-6 z-50 bg-[#0ABAB5] text-white w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center text-2xl md:text-3xl shadow-lg hover:bg-[#099E9A] hover:scale-110 transition-transform">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Application Script for Tab Switching & Scroll Animation -->
+    <script>
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15
+        };
+
+        const scrollObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    // Stop observing once animated
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        function initAnimations() {
+            // Re-observe all animation elements on the active page
+            const elements = document.querySelectorAll('.page-section.active .animate-on-scroll');
+            elements.forEach(el => {
+                el.classList.remove('is-visible'); // Reset state
+                // Small timeout to ensure DOM update registers before observing
+                setTimeout(() => scrollObserver.observe(el), 50);
+            });
+        }
+
+        // Initialize animations on first load
+        document.addEventListener('DOMContentLoaded', initAnimations);
+
+        function showPage(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page-section');
+            pages.forEach(page => {
+                page.classList.add('hidden');
+                page.classList.remove('active');
+            });
+            
+            // Show targeted page
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.remove('hidden');
+                targetPage.classList.add('active');
+                
+                // Re-trigger animations for the new page
+                initAnimations();
+            }
+            
+            // Close mobile menu if it's open
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenu.classList.contains('scale-y-100')) {
+                toggleMobileMenu();
+            }
+            
+            // Scroll to top smoothly
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            // Toggle classes for slide down animation
+            menu.classList.toggle('scale-y-0');
+            menu.classList.toggle('opacity-0');
+            menu.classList.toggle('scale-y-100');
+            menu.classList.toggle('opacity-100');
+        }
+    </script>
+</body>
+</html>
