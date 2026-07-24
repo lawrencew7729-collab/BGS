@@ -37,6 +37,72 @@
             border-bottom-left-radius: 0.25rem;
         }
 
+        /* Products Dropdown */
+        .nav-item {
+            position: relative;
+        }
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-8px);
+            min-width: 220px;
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-top: 3px solid #0ABAB5;
+            border-radius: 0 0 1rem 1rem;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 100;
+            padding: 0.5rem 0;
+        }
+        .nav-item:hover .dropdown-menu,
+        .nav-item .dropdown-menu.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+        .dropdown-menu a {
+            display: block;
+            padding: 0.6rem 1.25rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+            color: #374151;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            transition: all 0.2s;
+            white-space: nowrap;
+            border-left: 3px solid transparent;
+        }
+        .dropdown-menu a:hover {
+            background: #f0fdfa;
+            color: #0ABAB5;
+            border-left-color: #0ABAB5;
+        }
+        .dropdown-menu a:not(:last-child) {
+            border-bottom: 1px solid #f3f4f6;
+        }
+        .dropdown-arrow {
+            display: inline-block;
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            font-size: 0.65em;
+            margin-left: 4px;
+        }
+        .nav-item:hover .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+        .dropdown-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 99;
+            display: none;
+        }
+        .nav-item:hover .dropdown-overlay {
+            display: block;
+        }
+
         /* Rainbow Shine Animation */
         .rainbow-shine-wrapper {
             position: relative;
@@ -139,10 +205,28 @@
                 </div>
                 
                 <!-- Desktop Menu -->
-                <nav class="hidden md:flex space-x-8">
+                <nav class="hidden md:flex space-x-8 items-center">
                     <button onclick="showPage('home')" class="text-gray-700 hover-text-theme px-3 py-2 font-medium text-lg uppercase transition-colors">Home</button>
                     <button onclick="showPage('about')" class="text-gray-700 hover-text-theme px-3 py-2 font-medium text-lg uppercase transition-colors">About Us</button>
-                    <button onclick="showPage('products')" class="text-gray-700 hover-text-theme px-3 py-2 font-medium text-lg uppercase transition-colors">Products</button>
+                    <div class="nav-item">
+                        <button onclick="showPage('products')" class="text-gray-700 hover-text-theme px-3 py-2 font-medium text-lg uppercase transition-colors flex items-center gap-1">
+                            Products <span class="dropdown-arrow">▼</span>
+                        </button>
+                        <div class="dropdown-overlay"></div>
+                        <div class="dropdown-menu" id="products-dropdown">
+                            <a href="javascript:void(0)" onclick="goToProduct('prod-essential-lv')">Essential LV Products</a>
+                            <a href="javascript:void(0)" onclick="goToProduct('prod-smart-electrical')">Smart Electrical &amp; Industrial Automation</a>
+                            <a href="javascript:void(0)" onclick="goToProduct('prod-measuring-tools')">Electrical Measuring Tools</a>
+                            <a href="javascript:void(0)" onclick="goToProduct('prod-hand-tools')">Hand Tools &amp; Weatherproof Sockets</a>
+                            <a href="javascript:void(0)" onclick="goToProduct('prod-lighting')">Lighting</a>
+                            <a href="javascript:void(0)" onclick="goToProduct('prod-switches')">Switches</a>
+                            <a href="javascript:void(0)" onclick="goToProduct('prod-cable')">Cable</a>
+                            <a href="javascript:void(0)" onclick="goToProduct('prod-trunking')">Trunking</a>
+                            <a href="javascript:void(0)" onclick="goToProduct('prod-fans')">Fans</a>
+                            <a href="javascript:void(0)" onclick="goToProduct('prod-water-heater')">Water Heater</a>
+                            <a href="javascript:void(0)" onclick="goToProduct('prod-exit-sign')">Exit Signs &amp; Emergency Lights</a>
+                        </div>
+                    </div>
                 </nav>
 
                 <!-- Mobile menu button -->
@@ -154,10 +238,27 @@
             </div>
 
             <!-- Mobile Menu Dropdown -->
-            <div id="mobile-menu" class="absolute right-4 sm:right-6 top-full w-48 bg-white border border-[#0ABAB5] border-t-0 shadow-lg rounded-b-lg overflow-hidden transition-all duration-300 ease-out origin-top transform scale-y-0 opacity-0 md:hidden flex flex-col z-50">
+            <div id="mobile-menu" class="absolute right-4 sm:right-6 top-full w-56 bg-white border border-[#0ABAB5] border-t-0 shadow-lg rounded-b-lg overflow-hidden transition-all duration-300 ease-out origin-top transform scale-y-0 opacity-0 md:hidden flex flex-col z-50">
                 <button onclick="showPage('home')" class="w-full text-left px-4 py-3 text-sm text-gray-700 hover-text-theme font-medium uppercase border-b border-gray-100">Home</button>
                 <button onclick="showPage('about')" class="w-full text-left px-4 py-3 text-sm text-gray-700 hover-text-theme font-medium uppercase border-b border-gray-100">About Us</button>
-                <button onclick="showPage('products')" class="w-full text-left px-4 py-3 text-sm text-gray-700 hover-text-theme font-medium uppercase">Products</button>
+                <div class="border-b border-gray-100">
+                    <button onclick="toggleMobileProducts()" class="w-full text-left px-4 py-3 text-sm text-gray-700 hover-text-theme font-medium uppercase flex items-center justify-between">
+                        Products <span id="mobile-prod-arrow" class="text-xs transition-transform duration-300">▼</span>
+                    </button>
+                    <div id="mobile-products-sub" class="hidden bg-gray-50">
+                        <a href="javascript:void(0)" onclick="goToProduct('prod-essential-lv')" class="block px-6 py-2.5 text-xs font-semibold text-gray-600 hover-text-theme uppercase border-b border-gray-100">Essential LV Products</a>
+                        <a href="javascript:void(0)" onclick="goToProduct('prod-smart-electrical')" class="block px-6 py-2.5 text-xs font-semibold text-gray-600 hover-text-theme uppercase border-b border-gray-100">Smart Electrical &amp; Automation</a>
+                        <a href="javascript:void(0)" onclick="goToProduct('prod-measuring-tools')" class="block px-6 py-2.5 text-xs font-semibold text-gray-600 hover-text-theme uppercase border-b border-gray-100">Measuring Tools</a>
+                        <a href="javascript:void(0)" onclick="goToProduct('prod-hand-tools')" class="block px-6 py-2.5 text-xs font-semibold text-gray-600 hover-text-theme uppercase border-b border-gray-100">Hand Tools &amp; Sockets</a>
+                        <a href="javascript:void(0)" onclick="goToProduct('prod-lighting')" class="block px-6 py-2.5 text-xs font-semibold text-gray-600 hover-text-theme uppercase border-b border-gray-100">Lighting</a>
+                        <a href="javascript:void(0)" onclick="goToProduct('prod-switches')" class="block px-6 py-2.5 text-xs font-semibold text-gray-600 hover-text-theme uppercase border-b border-gray-100">Switches</a>
+                        <a href="javascript:void(0)" onclick="goToProduct('prod-cable')" class="block px-6 py-2.5 text-xs font-semibold text-gray-600 hover-text-theme uppercase border-b border-gray-100">Cable</a>
+                        <a href="javascript:void(0)" onclick="goToProduct('prod-trunking')" class="block px-6 py-2.5 text-xs font-semibold text-gray-600 hover-text-theme uppercase border-b border-gray-100">Trunking</a>
+                        <a href="javascript:void(0)" onclick="goToProduct('prod-fans')" class="block px-6 py-2.5 text-xs font-semibold text-gray-600 hover-text-theme uppercase border-b border-gray-100">Fans</a>
+                        <a href="javascript:void(0)" onclick="goToProduct('prod-water-heater')" class="block px-6 py-2.5 text-xs font-semibold text-gray-600 hover-text-theme uppercase border-b border-gray-100">Water Heater</a>
+                        <a href="javascript:void(0)" onclick="goToProduct('prod-exit-sign')" class="block px-6 py-2.5 text-xs font-semibold text-gray-600 hover-text-theme uppercase">Exit Signs &amp; Emergency</a>
+                    </div>
+                </div>
             </div>
         </div>
     </header>
@@ -368,7 +469,7 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
 
                         <!-- 1. Essential LV Products -->
-                        <div class="bg-white border shadow-md hover:shadow-2xl cut-corner transition-all duration-300 flex flex-col group animate-on-scroll slide-up delay-100">
+                        <div id="prod-essential-lv" class="bg-white border shadow-md hover:shadow-2xl cut-corner transition-all duration-300 flex flex-col group animate-on-scroll slide-up delay-100">
                             <div class="p-5 md:p-8 flex-grow flex flex-col">
                                 <div class="w-14 h-14 bg-[#0ABAB5] bg-opacity-10 rounded-full flex items-center justify-center text-theme text-2xl mb-4">
                                     <i class="fas fa-bolt"></i>
@@ -382,7 +483,7 @@
                         </div>
 
                         <!-- 2. Smart Electrical Part & Industrial Electrical Automation Components -->
-                        <div class="bg-white border shadow-md hover:shadow-2xl cut-corner transition-all duration-300 flex flex-col group animate-on-scroll slide-up delay-200">
+                        <div id="prod-smart-electrical" class="bg-white border shadow-md hover:shadow-2xl cut-corner transition-all duration-300 flex flex-col group animate-on-scroll slide-up delay-200">
                             <div class="p-5 md:p-8 flex-grow flex flex-col">
                                 <div class="w-14 h-14 bg-[#0ABAB5] bg-opacity-10 rounded-full flex items-center justify-center text-theme text-2xl mb-4">
                                     <i class="fas fa-microchip"></i>
@@ -396,7 +497,7 @@
                         </div>
 
                         <!-- 3. Electrical Measuring Tools -->
-                        <div class="bg-white border shadow-md hover:shadow-2xl cut-corner transition-all duration-300 flex flex-col group animate-on-scroll slide-up delay-300">
+                        <div id="prod-measuring-tools" class="bg-white border shadow-md hover:shadow-2xl cut-corner transition-all duration-300 flex flex-col group animate-on-scroll slide-up delay-300">
                             <div class="p-5 md:p-8 flex-grow flex flex-col">
                                 <div class="w-14 h-14 bg-[#0ABAB5] bg-opacity-10 rounded-full flex items-center justify-center text-theme text-2xl mb-4">
                                     <i class="fas fa-ruler-combined"></i>
@@ -412,7 +513,7 @@
                         </div>
 
                         <!-- 4. Hand Tools & Plug and Socket (Weatherproof) -->
-                        <div class="bg-white border shadow-md hover:shadow-2xl cut-corner transition-all duration-300 flex flex-col group animate-on-scroll slide-up delay-100">
+                        <div id="prod-hand-tools" class="bg-white border shadow-md hover:shadow-2xl cut-corner transition-all duration-300 flex flex-col group animate-on-scroll slide-up delay-100">
                             <div class="p-5 md:p-8 flex-grow flex flex-col">
                                 <div class="w-14 h-14 bg-[#0ABAB5] bg-opacity-10 rounded-full flex items-center justify-center text-theme text-2xl mb-4">
                                     <i class="fas fa-tools"></i>
@@ -426,7 +527,7 @@
                         </div>
 
                         <!-- 5. Lighting -->
-                        <div class="bg-white border shadow-md hover:shadow-2xl cut-corner transition-all duration-300 flex flex-col group animate-on-scroll slide-up delay-200">
+                        <div id="prod-lighting" class="bg-white border shadow-md hover:shadow-2xl cut-corner transition-all duration-300 flex flex-col group animate-on-scroll slide-up delay-200">
                             <div class="p-5 md:p-8 flex-grow flex flex-col">
                                 <div class="w-14 h-14 bg-[#0ABAB5] bg-opacity-10 rounded-full flex items-center justify-center text-theme text-2xl mb-4">
                                     <i class="fas fa-lightbulb"></i>
@@ -443,7 +544,7 @@
                         </div>
 
                         <!-- 6. Switches -->
-                        <div class="bg-white border shadow-md hover:shadow-2xl cut-corner transition-all duration-300 flex flex-col group animate-on-scroll slide-up delay-300">
+                        <div id="prod-switches" class="bg-white border shadow-md hover:shadow-2xl cut-corner transition-all duration-300 flex flex-col group animate-on-scroll slide-up delay-300">
                             <div class="p-5 md:p-8 flex-grow flex flex-col">
                                 <div class="w-14 h-14 bg-[#0ABAB5] bg-opacity-10 rounded-full flex items-center justify-center text-theme text-2xl mb-4">
                                     <i class="fas fa-toggle-on"></i>
@@ -460,7 +561,7 @@
                         </div>
 
                         <!-- 7. Cable -->
-                        <div class="bg-white border shadow-md hover:shadow-2xl cut-corner transition-all duration-300 flex flex-col group animate-on-scroll slide-up delay-100">
+                        <div id="prod-cable" class="bg-white border shadow-md hover:shadow-2xl cut-corner transition-all duration-300 flex flex-col group animate-on-scroll slide-up delay-100">
                             <div class="p-5 md:p-8 flex-grow flex flex-col">
                                 <div class="w-14 h-14 bg-[#0ABAB5] bg-opacity-10 rounded-full flex items-center justify-center text-theme text-2xl mb-4">
                                     <i class="fas fa-cable-car"></i>
@@ -475,7 +576,7 @@
                         </div>
 
                         <!-- 8. Trunking -->
-                        <div class="bg-white border shadow-md hover:shadow-2xl cut-corner transition-all duration-300 flex flex-col group animate-on-scroll slide-up delay-200">
+                        <div id="prod-trunking" class="bg-white border shadow-md hover:shadow-2xl cut-corner transition-all duration-300 flex flex-col group animate-on-scroll slide-up delay-200">
                             <div class="p-5 md:p-8 flex-grow flex flex-col">
                                 <div class="w-14 h-14 bg-[#0ABAB5] bg-opacity-10 rounded-full flex items-center justify-center text-theme text-2xl mb-4">
                                     <i class="fas fa-draw-polygon"></i>
@@ -489,7 +590,7 @@
                         </div>
 
                         <!-- 9. Fans -->
-                        <div class="bg-white border shadow-md hover:shadow-2xl cut-corner transition-all duration-300 flex flex-col group animate-on-scroll slide-up delay-300">
+                        <div id="prod-fans" class="bg-white border shadow-md hover:shadow-2xl cut-corner transition-all duration-300 flex flex-col group animate-on-scroll slide-up delay-300">
                             <div class="p-5 md:p-8 flex-grow flex flex-col">
                                 <div class="w-14 h-14 bg-[#0ABAB5] bg-opacity-10 rounded-full flex items-center justify-center text-theme text-2xl mb-4">
                                     <i class="fas fa-fan"></i>
@@ -516,7 +617,7 @@
                         </div>
 
                         <!-- 10. Water Heater -->
-                        <div class="bg-white border shadow-md hover:shadow-2xl cut-corner transition-all duration-300 flex flex-col group animate-on-scroll slide-up delay-100">
+                        <div id="prod-water-heater" class="bg-white border shadow-md hover:shadow-2xl cut-corner transition-all duration-300 flex flex-col group animate-on-scroll slide-up delay-100">
                             <div class="p-5 md:p-8 flex-grow flex flex-col">
                                 <div class="w-14 h-14 bg-[#0ABAB5] bg-opacity-10 rounded-full flex items-center justify-center text-theme text-2xl mb-4">
                                     <i class="fas fa-shower"></i>
@@ -530,7 +631,7 @@
                         </div>
 
                         <!-- 11. Exit Sign & Emergency Light -->
-                        <div class="bg-white border shadow-md hover:shadow-2xl cut-corner transition-all duration-300 flex flex-col group animate-on-scroll slide-up delay-200">
+                        <div id="prod-exit-sign" class="bg-white border shadow-md hover:shadow-2xl cut-corner transition-all duration-300 flex flex-col group animate-on-scroll slide-up delay-200">
                             <div class="p-5 md:p-8 flex-grow flex flex-col">
                                 <div class="w-14 h-14 bg-[#0ABAB5] bg-opacity-10 rounded-full flex items-center justify-center text-theme text-2xl mb-4">
                                     <i class="fas fa-door-open"></i>
@@ -666,6 +767,26 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
+        function goToProduct(productId) {
+            // First switch to Products page
+            showPage('products');
+            // Wait for Products page to render, then scroll to the product
+            setTimeout(() => {
+                const el = document.getElementById(productId);
+                if (el) {
+                    const offset = 120; // Account for fixed header
+                    const top = el.getBoundingClientRect().top + window.pageYOffset - offset;
+                    window.scrollTo({ top, behavior: 'smooth' });
+                    // Brief highlight effect
+                    el.style.transition = 'box-shadow 0.3s ease';
+                    el.style.boxShadow = '0 0 0 3px #0ABAB5, 0 10px 40px rgba(10,186,181,0.3)';
+                    setTimeout(() => {
+                        el.style.boxShadow = '';
+                    }, 1500);
+                }
+            }, 350);
+        }
+
         function toggleMobileMenu() {
             const menu = document.getElementById('mobile-menu');
             // Toggle classes for slide down animation
@@ -673,6 +794,13 @@
             menu.classList.toggle('opacity-0');
             menu.classList.toggle('scale-y-100');
             menu.classList.toggle('opacity-100');
+        }
+
+        function toggleMobileProducts() {
+            const sub = document.getElementById('mobile-products-sub');
+            const arrow = document.getElementById('mobile-prod-arrow');
+            sub.classList.toggle('hidden');
+            arrow.style.transform = sub.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
         }
     </script>
 </body>
