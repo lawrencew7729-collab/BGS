@@ -304,9 +304,37 @@
                 <div class="relative z-30 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 md:mt-8">
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 text-left md:text-center">
                         
+                        <!-- Reliable Quality - Merging Shield -->
                         <div class="bg-white p-4 md:p-6 border shadow-xl cut-corner hover:-translate-y-2 transition-transform duration-300 flex items-center md:block animate-on-scroll slide-up delay-100">
                             <div class="flex-shrink-0 w-12 md:w-auto md:mb-4 flex justify-center text-theme">
-                                <i class="fas fa-shield-alt text-2xl md:text-4xl"></i>
+                                <svg viewBox="0 0 80 80" class="w-12 md:w-16 h-12 md:h-16 overflow-visible">
+                                    <style>
+                                        @keyframes shieldMerge {
+                                            0% { transform: translateX(-8px); opacity: 0.3; }
+                                            50% { transform: translateX(0); opacity: 1; }
+                                            100% { transform: translateX(-8px); opacity: 0.3; }
+                                        }
+                                        @keyframes shieldMergeR {
+                                            0% { transform: translateX(8px); opacity: 0.3; }
+                                            50% { transform: translateX(0); opacity: 1; }
+                                            100% { transform: translateX(8px); opacity: 0.3; }
+                                        }
+                                        @keyframes shieldPulse {
+                                            0% { transform: scale(1); }
+                                            50% { transform: scale(1.08); }
+                                            100% { transform: scale(1); }
+                                        }
+                                        .shield-left { animation: shieldMerge 3s ease-in-out infinite; }
+                                        .shield-right { animation: shieldMergeR 3s ease-in-out infinite; }
+                                        .shield-check { animation: shieldPulse 3s ease-in-out infinite; }
+                                    </style>
+                                    <!-- Left half of shield -->
+                                    <path class="shield-left" d="M40 8 L20 14 L20 36 C20 52 36 62 40 66 L40 8Z" fill="#0ABAB5" opacity="0.9"/>
+                                    <!-- Right half of shield -->
+                                    <path class="shield-right" d="M40 8 L60 14 L60 36 C60 52 44 62 40 66 L40 8Z" fill="#099E9A" opacity="0.9"/>
+                                    <!-- Center checkmark -->
+                                    <path class="shield-check" d="M32 38 L38 46 L50 32" fill="none" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
                             </div>
                             <div>
                                 <h3 class="text-base md:text-xl font-bold mb-1 md:mb-2 uppercase text-gray-900">Reliable Quality</h3>
@@ -314,9 +342,46 @@
                             </div>
                         </div>
 
+                        <!-- Fast Delivery - Moving Truck -->
                         <div class="bg-white p-4 md:p-6 border shadow-xl cut-corner hover:-translate-y-2 transition-transform duration-300 flex items-center md:block animate-on-scroll slide-up delay-200">
                             <div class="flex-shrink-0 w-12 md:w-auto md:mb-4 flex justify-center text-theme">
-                                <i class="fas fa-truck text-2xl md:text-4xl"></i>
+                                <svg viewBox="0 0 80 60" class="w-14 md:w-20 h-12 md:h-16 overflow-visible">
+                                    <style>
+                                        @keyframes truckDrive {
+                                            0% { transform: translateX(-12px); }
+                                            50% { transform: translateX(12px); }
+                                            100% { transform: translateX(-12px); }
+                                        }
+                                        @keyframes wheelSpin {
+                                            0% { transform: rotate(0deg); }
+                                            100% { transform: rotate(360deg); }
+                                        }
+                                        .truck-body { animation: truckDrive 3s ease-in-out infinite; }
+                                        .wheel-l { animation: wheelSpin 1s linear infinite; transform-origin: 20px 48px; }
+                                        .wheel-r { animation: wheelSpin 1s linear infinite; transform-origin: 56px 48px; }
+                                    </style>
+                                    <g class="truck-body">
+                                        <!-- Truck body -->
+                                        <rect x="12" y="16" width="40" height="26" rx="3" fill="#0ABAB5"/>
+                                        <!-- Cargo area -->
+                                        <rect x="14" y="18" width="22" height="22" rx="2" fill="#099E9A"/>
+                                        <!-- Cabin -->
+                                        <path d="M34 16 L34 28 L56 28 L56 22 C56 18.5 54 16 52 16 Z" fill="#0ABAB5"/>
+                                        <!-- Window -->
+                                        <rect x="44" y="18" width="10" height="8" rx="1.5" fill="white" opacity="0.6"/>
+                                        <!-- Speed lines -->
+                                        <line x1="62" y1="24" x2="72" y2="24" stroke="#0ABAB5" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+                                        <line x1="60" y1="30" x2="70" y2="30" stroke="#0ABAB5" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
+                                        <line x1="62" y1="36" x2="68" y2="36" stroke="#0ABAB5" stroke-width="1.5" stroke-linecap="round" opacity="0.3"/>
+                                    </g>
+                                    <!-- Wheels -->
+                                    <circle class="wheel-l" cx="20" cy="48" r="6" fill="#374151"/>
+                                    <circle cx="20" cy="48" r="2.5" fill="white"/>
+                                    <circle class="wheel-r" cx="56" cy="48" r="6" fill="#374151"/>
+                                    <circle cx="56" cy="48" r="2.5" fill="white"/>
+                                    <!-- Ground line -->
+                                    <line x1="8" y1="54" x2="72" y2="54" stroke="#D1D5DB" stroke-width="1.5" stroke-dasharray="4,3"/>
+                                </svg>
                             </div>
                             <div>
                                 <h3 class="text-base md:text-xl font-bold mb-1 md:mb-2 uppercase text-gray-900">Fast Delivery</h3>
@@ -324,9 +389,58 @@
                             </div>
                         </div>
 
+                        <!-- Expert Support - Handshake Animation -->
                         <div class="bg-white p-4 md:p-6 border shadow-xl cut-corner hover:-translate-y-2 transition-transform duration-300 flex items-center md:block animate-on-scroll slide-up delay-300">
                             <div class="flex-shrink-0 w-12 md:w-auto md:mb-4 flex justify-center text-theme">
-                                <i class="fas fa-handshake text-2xl md:text-4xl"></i>
+                                <svg viewBox="0 0 80 70" class="w-12 md:w-16 h-12 md:h-16 overflow-visible">
+                                    <style>
+                                        @keyframes handLeft {
+                                            0% { transform: translateX(-10px); opacity: 0.4; }
+                                            50% { transform: translateX(0); opacity: 1; }
+                                            100% { transform: translateX(-10px); opacity: 0.4; }
+                                        }
+                                        @keyframes handRight {
+                                            0% { transform: translateX(10px); opacity: 0.4; }
+                                            50% { transform: translateX(0); opacity: 1; }
+                                            100% { transform: translateX(10px); opacity: 0.4; }
+                                        }
+                                        @keyframes shakeHands {
+                                            0%, 100% { transform: rotate(0deg); }
+                                            25% { transform: rotate(-3deg); }
+                                            50% { transform: rotate(0deg); }
+                                            75% { transform: rotate(3deg); }
+                                        }
+                                        .hand-l { animation: handLeft 3s ease-in-out infinite; }
+                                        .hand-r { animation: handRight 3s ease-in-out infinite; }
+                                        .hand-clasp { animation: shakeHands 3s ease-in-out infinite; transform-origin: 40px 38px; }
+                                    </style>
+                                    <g class="hand-clasp">
+                                        <!-- Left hand -->
+                                        <g class="hand-l">
+                                            <!-- Arm -->
+                                            <rect x="4" y="34" width="20" height="10" rx="4" fill="#0ABAB5"/>
+                                            <!-- Palm -->
+                                            <circle cx="24" cy="39" r="7" fill="#0ABAB5"/>
+                                            <!-- Thumb -->
+                                            <path d="M24 32 C28 28 34 30 34 34" fill="none" stroke="#099E9A" stroke-width="3" stroke-linecap="round"/>
+                                            <!-- Fingers wrapping -->
+                                            <path d="M24 44 C28 48 34 46 34 42" fill="none" stroke="#099E9A" stroke-width="2.5" stroke-linecap="round"/>
+                                        </g>
+                                        <!-- Right hand -->
+                                        <g class="hand-r">
+                                            <!-- Arm -->
+                                            <rect x="56" y="34" width="20" height="10" rx="4" fill="#099E9A"/>
+                                            <!-- Palm -->
+                                            <circle cx="56" cy="39" r="7" fill="#099E9A"/>
+                                            <!-- Thumb -->
+                                            <path d="M56 32 C52 28 46 30 46 34" fill="none" stroke="#0ABAB5" stroke-width="3" stroke-linecap="round"/>
+                                            <!-- Fingers wrapping -->
+                                            <path d="M56 44 C52 48 46 46 46 42" fill="none" stroke="#0ABAB5" stroke-width="2.5" stroke-linecap="round"/>
+                                        </g>
+                                        <!-- Center clasp circle -->
+                                        <circle cx="40" cy="39" r="5" fill="white" opacity="0.3"/>
+                                    </g>
+                                </svg>
                             </div>
                             <div>
                                 <h3 class="text-base md:text-xl font-bold mb-1 md:mb-2 uppercase text-gray-900">Expert Support</h3>
