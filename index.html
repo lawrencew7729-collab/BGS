@@ -136,6 +136,26 @@
             100% { left: 150%; }
         }
 
+        /* Rainbow Shimmer Text */
+        .rainbow-text {
+            display: inline-block;
+            font-size: 1.1em;
+            font-weight: 900;
+            background: linear-gradient(90deg,
+                #ff0000 0%, #ff7700 12.5%, #ffff00 25%,
+                #00ff00 37.5%, #0077ff 50%, #8800ff 62.5%,
+                #ff0088 75%, #ff0000 87.5%, #ff7700 100%);
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: rainbowTextMove 2s linear infinite;
+        }
+        @keyframes rainbowTextMove {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
         /* Animation Base Classes */
         .animate-on-scroll {
             opacity: 0;
@@ -580,7 +600,7 @@
                             </div>
                             <div class="p-5 md:p-8 flex-grow flex flex-col">
                                 <h4 class="text-lg md:text-xl font-bold text-gray-900 mb-2 uppercase">Plug &amp; Socket (IP Rated)</h4>
-                                <p class="text-xs md:text-sm text-gray-500 mb-3">Weatherproof industrial plugs and sockets. Saya Tak Takut HUJAN! 💪</p>
+                                <p class="text-xs md:text-sm text-gray-500 mb-3">Weatherproof industrial plugs and sockets. <span class="rainbow-text">Saya Tak Takut HUJAN! 💪</span></p>
                                 <div class="mt-auto flex flex-wrap items-center gap-2">
                                     <span class="inline-block bg-gray-100 text-gray-600 text-xs font-semibold px-3 py-1 rounded-full border border-gray-200">IP Rated</span>
                                     <span class="inline-block bg-gray-100 text-gray-600 text-xs font-semibold px-3 py-1 rounded-full border border-gray-200">Weatherproof</span>
