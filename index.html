@@ -215,6 +215,7 @@
                         <div class="dropdown-overlay"></div>
                         <div class="dropdown-menu" id="products-dropdown">
                             <a href="javascript:void(0)" onclick="goToProduct('prod-essential-lv')">Essential LV Products</a>
+                            <a href="javascript:void(0)" onclick="goToProduct('prod-cables')">Cables</a>
                             <a href="javascript:void(0)" onclick="goToProduct('prod-smart-electrical')">Industrial Electrical Automation Components</a>
                             <a href="javascript:void(0)" onclick="goToProduct('prod-measuring-tools')">Electrical Measuring Tools</a>
                             <a href="javascript:void(0)" onclick="goToProduct('prod-hand-tools')">Hand Tools</a>
@@ -248,6 +249,7 @@
                     </button>
                     <div id="mobile-products-sub" class="hidden bg-gray-50">
                         <a href="javascript:void(0)" onclick="goToProduct('prod-essential-lv')" class="block px-6 py-2.5 text-xs font-semibold text-gray-600 hover-text-theme uppercase border-b border-gray-100">Essential LV Products</a>
+                        <a href="javascript:void(0)" onclick="goToProduct('prod-cables')" class="block px-6 py-2.5 text-xs font-semibold text-gray-600 hover-text-theme uppercase border-b border-gray-100">Cables</a>
                         <a href="javascript:void(0)" onclick="goToProduct('prod-smart-electrical')" class="block px-6 py-2.5 text-xs font-semibold text-gray-600 hover-text-theme uppercase border-b border-gray-100">Industrial Automation</a>
                         <a href="javascript:void(0)" onclick="goToProduct('prod-measuring-tools')" class="block px-6 py-2.5 text-xs font-semibold text-gray-600 hover-text-theme uppercase border-b border-gray-100">Measuring Tools</a>
                         <a href="javascript:void(0)" onclick="goToProduct('prod-hand-tools')" class="block px-6 py-2.5 text-xs font-semibold text-gray-600 hover-text-theme uppercase border-b border-gray-100">Hand Tools</a>
@@ -629,19 +631,43 @@
 
                         <!-- 11. Water Heater -->
                         <div id="prod-water-heater" class="bg-white border shadow-md hover:shadow-2xl cut-corner transition-all duration-300 flex flex-col group animate-on-scroll slide-up delay-100">
-                            <div class="p-5 md:p-8 flex-grow flex flex-col">
-                                <div class="w-14 h-14 bg-[#0ABAB5] bg-opacity-10 rounded-full flex items-center justify-center text-theme text-2xl mb-4">
-                                    <i class="fas fa-shower"></i>
+                            <div class="overflow-hidden cut-corner rounded-b-none relative">
+                                <img src="https://i.imgur.com/JTcio9z.jpg" alt="Water Heater - Joven" class="w-full h-48 md:h-56 object-cover group-hover:scale-105 transition-transform duration-500">
+                                <!-- Joven logo overlay top-right -->
+                                <div class="absolute top-3 right-3 bg-white/90 backdrop-blur-sm rounded-lg px-2.5 py-1.5 shadow-lg">
+                                    <img src="https://i.imgur.com/Gh74pzP.png" alt="Joven" class="h-6 md:h-8 w-auto">
                                 </div>
+                                <!-- "i products range" overlay on PVC pipe area (left side) -->
+                                <div class="absolute left-0 top-1/2 -translate-y-1/2 bg-gradient-to-r from-[#0ABAB5] to-[#099E9A] text-white text-[10px] md:text-sm font-bold px-2.5 py-1.5 md:px-4 md:py-2 uppercase tracking-widest shadow-lg rounded-r-lg">
+                                    i products range
+                                </div>
+                            </div>
+                            <div class="p-5 md:p-8 flex-grow flex flex-col">
                                 <h4 class="text-lg md:text-xl font-bold text-gray-900 mb-2 uppercase">Water Heater</h4>
-                                <p class="text-xs md:text-sm text-gray-500 mb-3">Instant and storage water heating solutions.</p>
+                                <p class="text-xs md:text-sm text-gray-500 mb-3">Instant and storage water heating solutions. Premium quality from Joven.</p>
                                 <div class="mt-auto flex flex-wrap gap-2">
                                     <span class="inline-block bg-[#0ABAB5] text-white text-xs font-semibold px-3 py-1 rounded-full">Joven</span>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- 12. Exit Sign & Emergency Light -->
+                        <!-- 12. CABLES -->
+                        <div id="prod-cables" class="bg-white border shadow-md hover:shadow-2xl cut-corner transition-all duration-300 flex flex-col group animate-on-scroll slide-up delay-200">
+                            <div class="overflow-hidden cut-corner rounded-b-none">
+                                <img src="https://i.imgur.com/ZBLaWfR.png" alt="Cables" class="w-full h-48 md:h-56 object-cover group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <div class="p-5 md:p-8 flex-grow flex flex-col">
+                                <h4 class="text-lg md:text-xl font-bold text-gray-900 mb-2 uppercase">Cables</h4>
+                                <p class="text-xs md:text-sm text-gray-500 mb-3">Wide range of high-quality electrical cables including PVC insulated, armoured, fire-resistant, and industrial-grade wiring solutions for residential, commercial, and industrial applications.</p>
+                                <div class="mt-auto flex flex-wrap gap-2">
+                                    <span class="inline-block bg-gray-100 text-gray-600 text-xs font-semibold px-3 py-1 rounded-full border border-gray-200">PVC Insulated</span>
+                                    <span class="inline-block bg-gray-100 text-gray-600 text-xs font-semibold px-3 py-1 rounded-full border border-gray-200">Armoured</span>
+                                    <span class="inline-block bg-gray-100 text-gray-600 text-xs font-semibold px-3 py-1 rounded-full border border-gray-200">Fire Resistant</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 13. Exit Sign & Emergency Light -->
                         <div id="prod-exit-sign" class="bg-white border shadow-md hover:shadow-2xl cut-corner transition-all duration-300 flex flex-col group animate-on-scroll slide-up delay-200">
                             <div class="overflow-hidden cut-corner rounded-b-none">
                                 <img src="https://i.imgur.com/Q522THi.jpg" alt="Exit Signs & Emergency Lights" class="w-full h-48 md:h-56 object-cover group-hover:scale-105 transition-transform duration-500">
