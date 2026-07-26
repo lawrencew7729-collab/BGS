@@ -1,0 +1,15 @@
+{
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "destination": "https://bgs-electrical.com/$1",
+      "permanent": true,
+      "has": [
+        {
+          "type": "host",
+          "value": "bgs-ten.vercel.app"
+        }
+      ]
+    }
+  ]
+}
