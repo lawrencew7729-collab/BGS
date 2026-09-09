@@ -37,6 +37,37 @@
             border-bottom-left-radius: 0.25rem;
         }
 
+        /* Language Switcher */
+        .lang-switch {
+            display: inline-flex;
+            align-items: center;
+            border: 2px solid #0ABAB5;
+            border-radius: 9999px;
+            overflow: hidden;
+            background: #fff;
+        }
+        .lang-btn {
+            padding: 0.25rem 0.7rem;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.03em;
+            color: #6b7280;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            line-height: 1.4;
+            white-space: nowrap;
+        }
+        .lang-btn.lang-on {
+            background: #0ABAB5;
+            color: #fff;
+        }
+        .lang-btn:not(.lang-on):hover {
+            color: #0ABAB5;
+            background: #ecfeff;
+        }
+
         /* Products Dropdown */
         .nav-item {
             position: relative;
@@ -226,34 +257,40 @@
                 
                 <!-- Desktop Menu -->
                 <nav class="hidden md:flex space-x-8 items-center">
-                    <button onclick="showPage('home')" class="text-gray-700 hover-text-theme px-3 py-2 font-medium text-lg uppercase transition-colors">Home</button>
-                    <button onclick="showPage('about')" class="text-gray-700 hover-text-theme px-3 py-2 font-medium text-lg uppercase transition-colors">About Us</button>
+                    <button onclick="showPage('home')" class="text-gray-700 hover-text-theme px-3 py-2 font-medium text-lg uppercase transition-colors" data-i18n="nav.home">Home</button>
+                    <button onclick="showPage('about')" class="text-gray-700 hover-text-theme px-3 py-2 font-medium text-lg uppercase transition-colors" data-i18n="nav.about">About Us</button>
                     <div class="nav-item">
                         <button onclick="showPage('products')" class="text-gray-700 hover-text-theme px-3 py-2 font-medium text-lg uppercase transition-colors flex items-center gap-1">
-                            Products <span class="dropdown-arrow">▼</span>
+                            <span data-i18n="nav.products">Products</span> <span class="dropdown-arrow">▼</span>
                         </button>
                         <div class="dropdown-overlay"></div>
                         <div class="dropdown-menu" id="products-dropdown">
-                            <a href="javascript:void(0)" onclick="goToProduct('prod-essential-lv')">Essential LV Products</a>
-                            <a href="javascript:void(0)" onclick="goToProduct('prod-cables')">Cables</a>
-                            <a href="javascript:void(0)" onclick="goToProduct('prod-smart-electrical')">Industrial Electrical Automation Components</a>
-                            <a href="javascript:void(0)" onclick="goToProduct('prod-measuring-tools')">Electrical Measuring Tools</a>
-                            <a href="javascript:void(0)" onclick="goToProduct('prod-hand-tools')">Hand Tools</a>
-                            <a href="javascript:void(0)" onclick="goToProduct('prod-plug-socket')">Plug &amp; Socket (IP MAN)</a>
-                            <a href="javascript:void(0)" onclick="goToProduct('prod-lighting')">Lighting</a>
-                            <a href="javascript:void(0)" onclick="goToProduct('prod-switches')">Switches</a>
-                            <a href="javascript:void(0)" onclick="goToProduct('prod-pvc-pipe')">PVC Pipe</a>
-                            <a href="javascript:void(0)" onclick="goToProduct('prod-trunking')">Trunking</a>
-                            <a href="javascript:void(0)" onclick="goToProduct('prod-fans')">Fans</a>
-                            <a href="javascript:void(0)" onclick="goToProduct('prod-water-heater')">Water Heater</a>
-                            <a href="javascript:void(0)" onclick="goToProduct('prod-exit-sign')">Exit Signs &amp; Emergency Lights</a>
-                            <a href="javascript:void(0)" onclick="goToProduct('prod-metal-box')">Metal Box</a>
+                            <a href="javascript:void(0)" onclick="goToProduct('prod-essential-lv')" data-i18n="p.essential">Essential LV Products</a>
+                            <a href="javascript:void(0)" onclick="goToProduct('prod-cables')" data-i18n="p.cables">Cables</a>
+                            <a href="javascript:void(0)" onclick="goToProduct('prod-smart-electrical')" data-i18n="p.automation">Industrial Electrical Automation Components</a>
+                            <a href="javascript:void(0)" onclick="goToProduct('prod-measuring-tools')" data-i18n="p.measuring">Electrical Measuring Tools</a>
+                            <a href="javascript:void(0)" onclick="goToProduct('prod-hand-tools')" data-i18n="p.hand">Hand Tools</a>
+                            <a href="javascript:void(0)" onclick="goToProduct('prod-plug-socket')" data-i18n="p.plug">Plug &amp; Socket (IP MAN)</a>
+                            <a href="javascript:void(0)" onclick="goToProduct('prod-lighting')" data-i18n="p.lighting">Lighting</a>
+                            <a href="javascript:void(0)" onclick="goToProduct('prod-switches')" data-i18n="p.switches">Switches</a>
+                            <a href="javascript:void(0)" onclick="goToProduct('prod-pvc-pipe')" data-i18n="p.pvc">PVC Pipe</a>
+                            <a href="javascript:void(0)" onclick="goToProduct('prod-trunking')" data-i18n="p.trunking">Trunking</a>
+                            <a href="javascript:void(0)" onclick="goToProduct('prod-fans')" data-i18n="p.fans">Fans</a>
+                            <a href="javascript:void(0)" onclick="goToProduct('prod-water-heater')" data-i18n="p.water">Water Heater</a>
+                            <a href="javascript:void(0)" onclick="goToProduct('prod-exit-sign')" data-i18n="p.exit">Exit Signs &amp; Emergency Lights</a>
+                            <a href="javascript:void(0)" onclick="goToProduct('prod-metal-box')" data-i18n="p.metal">Metal Box</a>
                         </div>
                     </div>
                 </nav>
 
+                <!-- Language Switcher EN / BM -->
+                <div class="lang-switch ml-3 md:ml-4" role="group" aria-label="Language switcher">
+                    <button type="button" class="lang-btn lang-on" data-lang="en" onclick="switchLang('en')">EN</button>
+                    <button type="button" class="lang-btn" data-lang="ms" onclick="switchLang('ms')">BM</button>
+                </div>
+
                 <!-- Mobile menu button -->
-                <div class="md:hidden flex items-center">
+                <div class="md:hidden flex items-center ml-3">
                     <button onclick="toggleMobileMenu()" class="text-gray-700 hover:text-gray-900 focus:outline-none">
                         <i class="fas fa-bars text-xl"></i>
                     </button>
@@ -262,27 +299,27 @@
 
             <!-- Mobile Menu Dropdown -->
             <div id="mobile-menu" class="absolute right-4 sm:right-6 top-full w-56 bg-white border border-[#0ABAB5] border-t-0 shadow-lg rounded-b-lg overflow-hidden transition-all duration-300 ease-out origin-top transform scale-y-0 opacity-0 md:hidden flex flex-col z-50">
-                <button onclick="showPage('home')" class="w-full text-left px-4 py-3 text-sm text-gray-700 hover-text-theme font-medium uppercase border-b border-gray-100">Home</button>
-                <button onclick="showPage('about')" class="w-full text-left px-4 py-3 text-sm text-gray-700 hover-text-theme font-medium uppercase border-b border-gray-100">About Us</button>
+                <button onclick="showPage('home')" class="w-full text-left px-4 py-3 text-sm text-gray-700 hover-text-theme font-medium uppercase border-b border-gray-100" data-i18n="nav.home">Home</button>
+                <button onclick="showPage('about')" class="w-full text-left px-4 py-3 text-sm text-gray-700 hover-text-theme font-medium uppercase border-b border-gray-100" data-i18n="nav.about">About Us</button>
                 <div class="border-b border-gray-100">
                     <button onclick="toggleMobileProducts()" class="w-full text-left px-4 py-3 text-sm text-gray-700 hover-text-theme font-medium uppercase flex items-center justify-between">
-                        Products <span id="mobile-prod-arrow" class="text-xs transition-transform duration-300">▼</span>
+                        <span data-i18n="nav.products.m">Products</span> <span id="mobile-prod-arrow" class="text-xs transition-transform duration-300">▼</span>
                     </button>
                     <div id="mobile-products-sub" class="hidden bg-gray-50">
-                        <a href="javascript:void(0)" onclick="goToProduct('prod-essential-lv')" class="block px-6 py-2.5 text-xs font-semibold text-gray-600 hover-text-theme uppercase border-b border-gray-100">Essential LV Products</a>
-                        <a href="javascript:void(0)" onclick="goToProduct('prod-cables')" class="block px-6 py-2.5 text-xs font-semibold text-gray-600 hover-text-theme uppercase border-b border-gray-100">Cables</a>
-                        <a href="javascript:void(0)" onclick="goToProduct('prod-smart-electrical')" class="block px-6 py-2.5 text-xs font-semibold text-gray-600 hover-text-theme uppercase border-b border-gray-100">Industrial Automation</a>
-                        <a href="javascript:void(0)" onclick="goToProduct('prod-measuring-tools')" class="block px-6 py-2.5 text-xs font-semibold text-gray-600 hover-text-theme uppercase border-b border-gray-100">Measuring Tools</a>
-                        <a href="javascript:void(0)" onclick="goToProduct('prod-hand-tools')" class="block px-6 py-2.5 text-xs font-semibold text-gray-600 hover-text-theme uppercase border-b border-gray-100">Hand Tools</a>
-                        <a href="javascript:void(0)" onclick="goToProduct('prod-plug-socket')" class="block px-6 py-2.5 text-xs font-semibold text-gray-600 hover-text-theme uppercase border-b border-gray-100">Plug &amp; Socket (IP MAN)</a>
-                        <a href="javascript:void(0)" onclick="goToProduct('prod-lighting')" class="block px-6 py-2.5 text-xs font-semibold text-gray-600 hover-text-theme uppercase border-b border-gray-100">Lighting</a>
-                        <a href="javascript:void(0)" onclick="goToProduct('prod-switches')" class="block px-6 py-2.5 text-xs font-semibold text-gray-600 hover-text-theme uppercase border-b border-gray-100">Switches</a>
-                        <a href="javascript:void(0)" onclick="goToProduct('prod-pvc-pipe')" class="block px-6 py-2.5 text-xs font-semibold text-gray-600 hover-text-theme uppercase border-b border-gray-100">PVC Pipe</a>
-                        <a href="javascript:void(0)" onclick="goToProduct('prod-trunking')" class="block px-6 py-2.5 text-xs font-semibold text-gray-600 hover-text-theme uppercase border-b border-gray-100">Trunking</a>
-                        <a href="javascript:void(0)" onclick="goToProduct('prod-fans')" class="block px-6 py-2.5 text-xs font-semibold text-gray-600 hover-text-theme uppercase border-b border-gray-100">Fans</a>
-                        <a href="javascript:void(0)" onclick="goToProduct('prod-water-heater')" class="block px-6 py-2.5 text-xs font-semibold text-gray-600 hover-text-theme uppercase border-b border-gray-100">Water Heater</a>
-                        <a href="javascript:void(0)" onclick="goToProduct('prod-exit-sign')" class="block px-6 py-2.5 text-xs font-semibold text-gray-600 hover-text-theme uppercase border-b border-gray-100">Exit Signs &amp; Emergency</a>
-                        <a href="javascript:void(0)" onclick="goToProduct('prod-metal-box')" class="block px-6 py-2.5 text-xs font-semibold text-gray-600 hover-text-theme uppercase">Metal Box</a>
+                        <a href="javascript:void(0)" onclick="goToProduct('prod-essential-lv')" class="block px-6 py-2.5 text-xs font-semibold text-gray-600 hover-text-theme uppercase border-b border-gray-100" data-i18n="p.essential">Essential LV Products</a>
+                        <a href="javascript:void(0)" onclick="goToProduct('prod-cables')" class="block px-6 py-2.5 text-xs font-semibold text-gray-600 hover-text-theme uppercase border-b border-gray-100" data-i18n="p.cables">Cables</a>
+                        <a href="javascript:void(0)" onclick="goToProduct('prod-smart-electrical')" class="block px-6 py-2.5 text-xs font-semibold text-gray-600 hover-text-theme uppercase border-b border-gray-100" data-i18n="p.automation.m">Industrial Automation</a>
+                        <a href="javascript:void(0)" onclick="goToProduct('prod-measuring-tools')" class="block px-6 py-2.5 text-xs font-semibold text-gray-600 hover-text-theme uppercase border-b border-gray-100" data-i18n="p.measuring.m">Measuring Tools</a>
+                        <a href="javascript:void(0)" onclick="goToProduct('prod-hand-tools')" class="block px-6 py-2.5 text-xs font-semibold text-gray-600 hover-text-theme uppercase border-b border-gray-100" data-i18n="p.hand">Hand Tools</a>
+                        <a href="javascript:void(0)" onclick="goToProduct('prod-plug-socket')" class="block px-6 py-2.5 text-xs font-semibold text-gray-600 hover-text-theme uppercase border-b border-gray-100" data-i18n="p.plug">Plug &amp; Socket (IP MAN)</a>
+                        <a href="javascript:void(0)" onclick="goToProduct('prod-lighting')" class="block px-6 py-2.5 text-xs font-semibold text-gray-600 hover-text-theme uppercase border-b border-gray-100" data-i18n="p.lighting">Lighting</a>
+                        <a href="javascript:void(0)" onclick="goToProduct('prod-switches')" class="block px-6 py-2.5 text-xs font-semibold text-gray-600 hover-text-theme uppercase border-b border-gray-100" data-i18n="p.switches">Switches</a>
+                        <a href="javascript:void(0)" onclick="goToProduct('prod-pvc-pipe')" class="block px-6 py-2.5 text-xs font-semibold text-gray-600 hover-text-theme uppercase border-b border-gray-100" data-i18n="p.pvc">PVC Pipe</a>
+                        <a href="javascript:void(0)" onclick="goToProduct('prod-trunking')" class="block px-6 py-2.5 text-xs font-semibold text-gray-600 hover-text-theme uppercase border-b border-gray-100" data-i18n="p.trunking">Trunking</a>
+                        <a href="javascript:void(0)" onclick="goToProduct('prod-fans')" class="block px-6 py-2.5 text-xs font-semibold text-gray-600 hover-text-theme uppercase border-b border-gray-100" data-i18n="p.fans">Fans</a>
+                        <a href="javascript:void(0)" onclick="goToProduct('prod-water-heater')" class="block px-6 py-2.5 text-xs font-semibold text-gray-600 hover-text-theme uppercase border-b border-gray-100" data-i18n="p.water">Water Heater</a>
+                        <a href="javascript:void(0)" onclick="goToProduct('prod-exit-sign')" class="block px-6 py-2.5 text-xs font-semibold text-gray-600 hover-text-theme uppercase border-b border-gray-100" data-i18n="p.exit.m">Exit Signs &amp; Emergency</a>
+                        <a href="javascript:void(0)" onclick="goToProduct('prod-metal-box')" class="block px-6 py-2.5 text-xs font-semibold text-gray-600 hover-text-theme uppercase" data-i18n="p.metal">Metal Box</a>
                     </div>
                 </div>
             </div>
@@ -308,13 +345,13 @@
 
                 <!-- Content: Normal flow below video on mobile, absolute center on desktop -->
                 <div class="relative z-20 text-center px-4 py-12 md:py-0 w-full max-w-4xl mx-auto md:bg-transparent bg-gray-900 animate-on-scroll slide-up">
-                    <h1 class="text-[1.75rem] leading-tight md:text-6xl font-extrabold text-white mb-4 md:mb-6 uppercase tracking-wider">
+                    <h1 class="text-[1.75rem] leading-tight md:text-6xl font-extrabold text-white mb-4 md:mb-6 uppercase tracking-wider" data-i18n="hero.title">
                         Powering Your Future
                     </h1>
-                    <p class="text-sm leading-relaxed md:text-2xl text-gray-200 mb-6 md:mb-8 font-medium">
+                    <p class="text-sm leading-relaxed md:text-2xl text-gray-200 mb-6 md:mb-8 font-medium" data-i18n="hero.sub">
                         BGS ELECTRICAL TRADING is your premier supplier for highly reliable cables, pipes, and electrical accessories.
                     </p>
-                    <button onclick="showPage('products')" class="bg-theme text-white text-sm md:text-lg px-6 py-2 md:px-8 md:py-3 rounded font-bold uppercase tracking-wide hover-bg-theme transition-colors shadow-lg">
+                    <button onclick="showPage('products')" class="bg-theme text-white text-sm md:text-lg px-6 py-2 md:px-8 md:py-3 rounded font-bold uppercase tracking-wide hover-bg-theme transition-colors shadow-lg" data-i18n="hero.cta">
                         Explore Products
                     </button>
                 </div>
@@ -359,8 +396,8 @@
                                 </svg>
                             </div>
                             <div>
-                                <h3 class="text-base md:text-xl font-bold mb-1 md:mb-2 uppercase text-gray-900">Reliable Quality</h3>
-                                <p class="text-xs md:text-base text-gray-600">Tested and certified electrical supplies for maximum safety and performance.</p>
+                                <h3 class="text-base md:text-xl font-bold mb-1 md:mb-2 uppercase text-gray-900" data-i18n="f1.title">Reliable Quality</h3>
+                                <p class="text-xs md:text-base text-gray-600" data-i18n="f1.desc">Tested and certified electrical supplies for maximum safety and performance.</p>
                             </div>
                         </div>
 
@@ -377,8 +414,8 @@
                                 <i class="fas fa-truck text-2xl md:text-4xl ani-truck"></i>
                             </div>
                             <div>
-                                <h3 class="text-base md:text-xl font-bold mb-1 md:mb-2 uppercase text-gray-900">Fast Delivery</h3>
-                                <p class="text-xs md:text-base text-gray-600">Efficient logistics ensuring your project materials arrive on time.</p>
+                                <h3 class="text-base md:text-xl font-bold mb-1 md:mb-2 uppercase text-gray-900" data-i18n="f2.title">Fast Delivery</h3>
+                                <p class="text-xs md:text-base text-gray-600" data-i18n="f2.desc">Efficient logistics ensuring your project materials arrive on time.</p>
                             </div>
                         </div>
 
@@ -398,8 +435,8 @@
                                 <i class="fas fa-handshake text-2xl md:text-4xl ani-hand"></i>
                             </div>
                             <div>
-                                <h3 class="text-base md:text-xl font-bold mb-1 md:mb-2 uppercase text-gray-900">Expert Support</h3>
-                                <p class="text-xs md:text-base text-gray-600">Dedicated team providing professional technical advice and assistance.</p>
+                                <h3 class="text-base md:text-xl font-bold mb-1 md:mb-2 uppercase text-gray-900" data-i18n="f3.title">Expert Support</h3>
+                                <p class="text-xs md:text-base text-gray-600" data-i18n="f3.desc">Dedicated team providing professional technical advice and assistance.</p>
                             </div>
                         </div>
 
@@ -412,90 +449,90 @@
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <!-- Title -->
                     <div class="text-center mb-8 md:mb-12 animate-on-scroll slide-up">
-                        <h2 class="text-2xl md:text-4xl font-extrabold text-gray-900 uppercase">Trusted Brands</h2>
+                        <h2 class="text-2xl md:text-4xl font-extrabold text-gray-900 uppercase" data-i18n="brands.title">Trusted Brands</h2>
                         <div class="w-16 md:w-24 h-1 bg-theme mx-auto mt-3 md:mt-4"></div>
-                        <p class="text-sm md:text-lg text-gray-600 mt-4">We partner with leading brands you can trust</p>
+                        <p class="text-sm md:text-lg text-gray-600 mt-4" data-i18n="brands.sub">We partner with leading brands you can trust</p>
                     </div>
                     
                     <!-- Brand Grid - 4面8方 entrance animations -->
-                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-6">
+                    <div class="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4 md:gap-6">
                         <!-- Row 1: ← ↑ → ← ↑ → -->
-                        <div class="bg-white border border-gray-200 rounded-xl p-4 md:p-6 flex items-center justify-center shadow-sm hover:shadow-lg hover:border-theme transition-all duration-300 cut-corner animate-on-scroll slide-left delay-100">
+                        <div class="bg-white border border-gray-200 rounded-xl p-3 md:p-6 flex items-center justify-center shadow-sm hover:shadow-lg hover:border-theme transition-all duration-300 cut-corner animate-on-scroll slide-left delay-100">
                             <img src="https://i.imgur.com/gDd7RPJ.png" alt="Kyoritsu" class="h-8 md:h-10 w-auto object-contain">
                         </div>
-                        <div class="bg-white border border-gray-200 rounded-xl p-4 md:p-6 flex items-center justify-center shadow-sm hover:shadow-lg hover:border-theme transition-all duration-300 cut-corner animate-on-scroll slide-up delay-200">
+                        <div class="bg-white border border-gray-200 rounded-xl p-3 md:p-6 flex items-center justify-center shadow-sm hover:shadow-lg hover:border-theme transition-all duration-300 cut-corner animate-on-scroll slide-up delay-200">
                             <img src="https://i.imgur.com/NYrxt9V.png" alt="Sanwa" class="h-8 md:h-10 w-auto object-contain">
                         </div>
-                        <div class="bg-white border border-gray-200 rounded-xl p-4 md:p-6 flex items-center justify-center shadow-sm hover:shadow-lg hover:border-theme transition-all duration-300 cut-corner animate-on-scroll slide-right delay-300">
+                        <div class="bg-white border border-gray-200 rounded-xl p-3 md:p-6 flex items-center justify-center shadow-sm hover:shadow-lg hover:border-theme transition-all duration-300 cut-corner animate-on-scroll slide-right delay-300">
                             <img src="https://i.imgur.com/MRei6DZ.png" alt="Uni-T" class="h-6 md:h-8 w-auto object-contain">
                         </div>
-                        <div class="bg-white border border-gray-200 rounded-xl p-4 md:p-6 flex items-center justify-center shadow-sm hover:shadow-lg hover:border-theme transition-all duration-300 cut-corner animate-on-scroll slide-left delay-100">
+                        <div class="bg-white border border-gray-200 rounded-xl p-3 md:p-6 flex items-center justify-center shadow-sm hover:shadow-lg hover:border-theme transition-all duration-300 cut-corner animate-on-scroll slide-left delay-100">
                             <img src="https://i.imgur.com/oSk56i0.png" alt="Philips" class="h-10 md:h-14 w-auto object-contain">
                         </div>
-                        <div class="bg-white border border-gray-200 rounded-xl p-4 md:p-6 flex items-center justify-center shadow-sm hover:shadow-lg hover:border-theme transition-all duration-300 cut-corner animate-on-scroll slide-up delay-200">
+                        <div class="bg-white border border-gray-200 rounded-xl p-3 md:p-6 flex items-center justify-center shadow-sm hover:shadow-lg hover:border-theme transition-all duration-300 cut-corner animate-on-scroll slide-up delay-200">
                             <a href="pdfs/Toshiba.pdf" target="_blank" rel="noopener noreferrer"><img src="https://i.imgur.com/FvP5g91.png" alt="Toshiba" class="h-10 md:h-14 w-auto object-contain hover:opacity-80 transition-opacity"></a>
                         </div>
-                        <div class="bg-white border border-gray-200 rounded-xl p-4 md:p-6 flex items-center justify-center shadow-sm hover:shadow-lg hover:border-theme transition-all duration-300 cut-corner animate-on-scroll slide-right delay-300">
+                        <div class="bg-white border border-gray-200 rounded-xl p-3 md:p-6 flex items-center justify-center shadow-sm hover:shadow-lg hover:border-theme transition-all duration-300 cut-corner animate-on-scroll slide-right delay-300">
                             <img src="https://i.imgur.com/9PQUnGW.png" alt="Nikkon" class="h-8 md:h-10 w-auto object-contain">
                         </div>
 
                         <!-- Row 2: → ↑ ← → ↑ ← -->
-                        <div class="bg-white border border-gray-200 rounded-xl p-4 md:p-6 flex items-center justify-center shadow-sm hover:shadow-lg hover:border-theme transition-all duration-300 cut-corner animate-on-scroll slide-right delay-200">
+                        <div class="bg-white border border-gray-200 rounded-xl p-3 md:p-6 flex items-center justify-center shadow-sm hover:shadow-lg hover:border-theme transition-all duration-300 cut-corner animate-on-scroll slide-right delay-200">
                             <img src="https://i.imgur.com/48EWvjj.png" alt="Perkunas" class="h-10 md:h-14 w-auto object-contain">
                         </div>
-                        <div class="bg-white border border-gray-200 rounded-xl p-4 md:p-6 flex items-center justify-center shadow-sm hover:shadow-lg hover:border-theme transition-all duration-300 cut-corner animate-on-scroll slide-up delay-300">
+                        <div class="bg-white border border-gray-200 rounded-xl p-3 md:p-6 flex items-center justify-center shadow-sm hover:shadow-lg hover:border-theme transition-all duration-300 cut-corner animate-on-scroll slide-up delay-300">
                             <img src="https://i.imgur.com/lkYhMTn.png" alt="Honeywell MK" class="h-10 md:h-14 w-auto object-contain">
                         </div>
-                        <div class="bg-white border border-gray-200 rounded-xl p-4 md:p-6 flex items-center justify-center shadow-sm hover:shadow-lg hover:border-theme transition-all duration-300 cut-corner animate-on-scroll slide-left delay-100">
+                        <div class="bg-white border border-gray-200 rounded-xl p-3 md:p-6 flex items-center justify-center shadow-sm hover:shadow-lg hover:border-theme transition-all duration-300 cut-corner animate-on-scroll slide-left delay-100">
                             <img src="https://i.imgur.com/CEDw9DK.png" alt="Schneider" class="h-8 md:h-10 w-auto object-contain">
                         </div>
-                        <div class="bg-white border border-gray-200 rounded-xl p-4 md:p-6 flex items-center justify-center shadow-sm hover:shadow-lg hover:border-theme transition-all duration-300 cut-corner animate-on-scroll slide-right delay-200">
+                        <div class="bg-white border border-gray-200 rounded-xl p-3 md:p-6 flex items-center justify-center shadow-sm hover:shadow-lg hover:border-theme transition-all duration-300 cut-corner animate-on-scroll slide-right delay-200">
                             <a href="pdfs/Mind.pdf" target="_blank" rel="noopener noreferrer"><img src="https://i.imgur.com/Gi7sDh7.png" alt="Mind" class="h-8 md:h-10 w-auto object-contain hover:opacity-80 transition-opacity"></a>
                         </div>
-                        <div class="bg-white border border-gray-200 rounded-xl p-4 md:p-6 flex items-center justify-center shadow-sm hover:shadow-lg hover:border-theme transition-all duration-300 cut-corner animate-on-scroll slide-up delay-300">
+                        <div class="bg-white border border-gray-200 rounded-xl p-3 md:p-6 flex items-center justify-center shadow-sm hover:shadow-lg hover:border-theme transition-all duration-300 cut-corner animate-on-scroll slide-up delay-300">
                             <img src="https://i.imgur.com/Ucxs0Jl.png" alt="Crown" class="h-8 md:h-10 w-auto object-contain">
                         </div>
-                        <div class="bg-white border border-gray-200 rounded-xl p-4 md:p-6 flex items-center justify-center shadow-sm hover:shadow-lg hover:border-theme transition-all duration-300 cut-corner animate-on-scroll slide-left delay-100">
+                        <div class="bg-white border border-gray-200 rounded-xl p-3 md:p-6 flex items-center justify-center shadow-sm hover:shadow-lg hover:border-theme transition-all duration-300 cut-corner animate-on-scroll slide-left delay-100">
                             <img src="https://i.imgur.com/DMusJmV.png" alt="Mega Hock" class="h-8 md:h-10 w-auto object-contain">
                         </div>
 
                         <!-- Row 3: ← ↑ → ← ↑ → -->
-                        <div class="bg-white border border-gray-200 rounded-xl p-4 md:p-6 flex items-center justify-center shadow-sm hover:shadow-lg hover:border-theme transition-all duration-300 cut-corner animate-on-scroll slide-left delay-200">
+                        <div class="bg-white border border-gray-200 rounded-xl p-3 md:p-6 flex items-center justify-center shadow-sm hover:shadow-lg hover:border-theme transition-all duration-300 cut-corner animate-on-scroll slide-left delay-200">
                             <a href="pdfs/U-Li.pdf" target="_blank" rel="noopener noreferrer"><img src="https://i.imgur.com/FFY00x3.png" alt="U-Li" class="h-8 md:h-10 w-auto object-contain hover:opacity-80 transition-opacity"></a>
                         </div>
-                        <div class="bg-white border border-gray-200 rounded-xl p-4 md:p-6 flex items-center justify-center shadow-sm hover:shadow-lg hover:border-theme transition-all duration-300 cut-corner animate-on-scroll slide-up delay-300">
+                        <div class="bg-white border border-gray-200 rounded-xl p-3 md:p-6 flex items-center justify-center shadow-sm hover:shadow-lg hover:border-theme transition-all duration-300 cut-corner animate-on-scroll slide-up delay-300">
                             <img src="https://i.imgur.com/68piffK.png" alt="KDK" class="h-8 md:h-10 w-auto object-contain">
                         </div>
-                        <div class="bg-white border border-gray-200 rounded-xl p-4 md:p-6 flex items-center justify-center shadow-sm hover:shadow-lg hover:border-theme transition-all duration-300 cut-corner animate-on-scroll slide-right delay-100">
+                        <div class="bg-white border border-gray-200 rounded-xl p-3 md:p-6 flex items-center justify-center shadow-sm hover:shadow-lg hover:border-theme transition-all duration-300 cut-corner animate-on-scroll slide-right delay-100">
                             <img src="https://i.imgur.com/gbYO2S0.png" alt="Starway" class="h-8 md:h-10 w-auto object-contain">
                         </div>
-                        <div class="bg-white border border-gray-200 rounded-xl p-4 md:p-6 flex items-center justify-center shadow-sm hover:shadow-lg hover:border-theme transition-all duration-300 cut-corner animate-on-scroll slide-left delay-200">
+                        <div class="bg-white border border-gray-200 rounded-xl p-3 md:p-6 flex items-center justify-center shadow-sm hover:shadow-lg hover:border-theme transition-all duration-300 cut-corner animate-on-scroll slide-left delay-200">
                             <a href="pdfs/Ogikoku.pdf" target="_blank" rel="noopener noreferrer"><img src="https://i.imgur.com/UJk72mc.png" alt="OGIKU" class="h-8 md:h-10 w-auto object-contain hover:opacity-80 transition-opacity"></a>
                         </div>
-                        <div class="bg-white border border-gray-200 rounded-xl p-4 md:p-6 flex items-center justify-center shadow-sm hover:shadow-lg hover:border-theme transition-all duration-300 cut-corner animate-on-scroll slide-up delay-300">
+                        <div class="bg-white border border-gray-200 rounded-xl p-3 md:p-6 flex items-center justify-center shadow-sm hover:shadow-lg hover:border-theme transition-all duration-300 cut-corner animate-on-scroll slide-up delay-300">
                             <img src="https://i.imgur.com/Gh74pzP.png" alt="Joven" class="h-8 md:h-10 w-auto object-contain">
                         </div>
-                        <div class="bg-white border border-gray-200 rounded-xl p-4 md:p-6 flex items-center justify-center shadow-sm hover:shadow-lg hover:border-theme transition-all duration-300 cut-corner animate-on-scroll slide-right delay-100">
+                        <div class="bg-white border border-gray-200 rounded-xl p-3 md:p-6 flex items-center justify-center shadow-sm hover:shadow-lg hover:border-theme transition-all duration-300 cut-corner animate-on-scroll slide-right delay-100">
                             <a href="pdfs/Vitalite.pdf" target="_blank" rel="noopener noreferrer"><img src="https://i.imgur.com/L1biKxt.png" alt="Vitalite" class="h-8 md:h-10 w-auto object-contain hover:opacity-80 transition-opacity"></a>
                         </div>
 
                         <!-- Row 4: ← ↑ → ← ↑ → -->
-                        <div class="bg-white border border-gray-200 rounded-xl p-4 md:p-6 flex items-center justify-center shadow-sm hover:shadow-lg hover:border-theme transition-all duration-300 cut-corner animate-on-scroll slide-left delay-100">
+                        <div class="bg-white border border-gray-200 rounded-xl p-3 md:p-6 flex items-center justify-center shadow-sm hover:shadow-lg hover:border-theme transition-all duration-300 cut-corner animate-on-scroll slide-left delay-100">
                             <a href="pdfs/Fighter.pdf" target="_blank" rel="noopener noreferrer"><img src="https://i.imgur.com/9gTJZk1.png" alt="Fighter" class="h-8 md:h-10 w-auto object-contain hover:opacity-80 transition-opacity"></a>
                         </div>
-                        <div class="bg-white border border-gray-200 rounded-xl p-4 md:p-6 flex items-center justify-center shadow-sm hover:shadow-lg hover:border-theme transition-all duration-300 cut-corner animate-on-scroll slide-up delay-200">
+                        <div class="bg-white border border-gray-200 rounded-xl p-3 md:p-6 flex items-center justify-center shadow-sm hover:shadow-lg hover:border-theme transition-all duration-300 cut-corner animate-on-scroll slide-up delay-200">
                             <a href="pdfs/Champion.pdf" target="_blank" rel="noopener noreferrer"><img src="https://i.imgur.com/oKPVgxd.png" alt="Champion" class="h-8 md:h-10 w-auto object-contain hover:opacity-80 transition-opacity"></a>
                         </div>
-                        <div class="bg-white border border-gray-200 rounded-xl p-4 md:p-6 flex items-center justify-center shadow-sm hover:shadow-lg hover:border-theme transition-all duration-300 cut-corner animate-on-scroll slide-right delay-300">
+                        <div class="bg-white border border-gray-200 rounded-xl p-3 md:p-6 flex items-center justify-center shadow-sm hover:shadow-lg hover:border-theme transition-all duration-300 cut-corner animate-on-scroll slide-right delay-300">
                             <a href="pdfs/Feema.pdf" target="_blank" rel="noopener noreferrer"><img src="https://i.imgur.com/bpoYO49.png" alt="Feema" class="h-8 md:h-10 w-auto object-contain hover:opacity-80 transition-opacity"></a>
                         </div>
-                        <div class="bg-white border border-gray-200 rounded-xl p-4 md:p-6 flex items-center justify-center shadow-sm hover:shadow-lg hover:border-theme transition-all duration-300 cut-corner animate-on-scroll slide-left delay-100">
+                        <div class="bg-white border border-gray-200 rounded-xl p-3 md:p-6 flex items-center justify-center shadow-sm hover:shadow-lg hover:border-theme transition-all duration-300 cut-corner animate-on-scroll slide-left delay-100">
                             <a href="pdfs/Super-A.pdf" target="_blank" rel="noopener noreferrer"><img src="https://i.imgur.com/PNHV39K.png" alt="SuperA" class="h-8 md:h-10 w-auto object-contain hover:opacity-80 transition-opacity"></a>
                         </div>
-                        <div class="bg-white border border-gray-200 rounded-xl p-4 md:p-6 flex items-center justify-center shadow-sm hover:shadow-lg hover:border-theme transition-all duration-300 cut-corner animate-on-scroll slide-up delay-200">
+                        <div class="bg-white border border-gray-200 rounded-xl p-3 md:p-6 flex items-center justify-center shadow-sm hover:shadow-lg hover:border-theme transition-all duration-300 cut-corner animate-on-scroll slide-up delay-200">
                             <a href="pdfs/WireMesh.pdf" target="_blank" rel="noopener noreferrer"><img src="https://i.imgur.com/BJCOfNq.png" alt="Wire Mesh Tray" class="h-8 md:h-10 w-auto object-contain hover:opacity-80 transition-opacity"></a>
                         </div>
-                        <div class="bg-white border border-gray-200 rounded-xl p-4 md:p-6 flex items-center justify-center shadow-sm hover:shadow-lg hover:border-theme transition-all duration-300 cut-corner animate-on-scroll slide-right delay-300">
+                        <div class="bg-white border border-gray-200 rounded-xl p-3 md:p-6 flex items-center justify-center shadow-sm hover:shadow-lg hover:border-theme transition-all duration-300 cut-corner animate-on-scroll slide-right delay-300">
                             <a href="pdfs/YLI.pdf" target="_blank" rel="noopener noreferrer"><img src="https://i.imgur.com/gF3QWyt.png" alt="YLI" class="h-8 md:h-10 w-auto object-contain hover:opacity-80 transition-opacity"></a>
                         </div>
                     </div>
@@ -514,8 +551,8 @@
                         <!-- Left Column: Unified Module with Overlap -->
                         <div class="md:w-5/12 flex flex-col space-y-6 md:space-y-8 animate-on-scroll slide-left">
                             <div>
-                                <h4 class="text-xs md:text-sm font-bold text-theme uppercase tracking-widest mb-1 md:mb-2">Discover Our Story</h4>
-                                <h2 class="text-3xl md:text-5xl font-extrabold text-gray-900 uppercase leading-tight">
+                                <h4 class="text-xs md:text-sm font-bold text-theme uppercase tracking-widest mb-1 md:mb-2" data-i18n="about.kicker">Discover Our Story</h4>
+                                <h2 class="text-3xl md:text-5xl font-extrabold text-gray-900 uppercase leading-tight" data-i18n="about.heading">
                                     About BGS<br>Electrical Trading
                                 </h2>
                             </div>
@@ -530,21 +567,21 @@
 
                         <!-- Right Column: Text Content -->
                         <div class="md:w-7/12 flex flex-col justify-center space-y-6 md:space-y-8 animate-on-scroll slide-right">
-                            <p class="text-sm md:text-lg text-gray-700 leading-relaxed">
+                            <p class="text-sm md:text-lg text-gray-700 leading-relaxed" data-i18n="about.p1">
                                 <strong class="text-gray-900 font-bold text-xl">BGS ELECTRICAL TRADING</strong> is an established electrical supplier committed to providing top-quality cables, piping, and general electrical components to contractors, developers, and retailers across the region.
                             </p>
-                            <p class="text-sm md:text-lg text-gray-700 leading-relaxed">
+                            <p class="text-sm md:text-lg text-gray-700 leading-relaxed" data-i18n="about.p2">
                                 We pride ourselves on offering a comprehensive range of certified products including Fire Resistant Cables, Armoured Cables, PVC Insulated Cables, and heavy-duty pipes designed to meet strict safety and industry standards.
                             </p>
                             
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 mt-4">
                                 <div class="bg-white p-5 md:p-8 shadow-md border-l-4 border-theme cut-corner transition-transform hover:-translate-y-1">
-                                    <h4 class="text-lg md:text-2xl font-bold text-gray-900 mb-2 uppercase">Our Vision</h4>
-                                    <p class="text-xs md:text-base text-gray-600">To be the most trusted and preferred partner in the electrical supply chain industry, recognized for integrity and excellence.</p>
+                                    <h4 class="text-lg md:text-2xl font-bold text-gray-900 mb-2 uppercase" data-i18n="about.vision.title">Our Vision</h4>
+                                    <p class="text-xs md:text-base text-gray-600" data-i18n="about.vision.desc">To be the most trusted and preferred partner in the electrical supply chain industry, recognized for integrity and excellence.</p>
                                 </div>
                                 <div class="bg-white p-5 md:p-8 shadow-md border-l-4 border-theme cut-corner transition-transform hover:-translate-y-1">
-                                    <h4 class="text-lg md:text-2xl font-bold text-gray-900 mb-2 uppercase">Our Mission</h4>
-                                    <p class="text-xs md:text-base text-gray-600">To consistently deliver safe, innovative, and cost-effective electrical solutions while prioritizing customer satisfaction.</p>
+                                    <h4 class="text-lg md:text-2xl font-bold text-gray-900 mb-2 uppercase" data-i18n="about.mission.title">Our Mission</h4>
+                                    <p class="text-xs md:text-base text-gray-600" data-i18n="about.mission.desc">To consistently deliver safe, innovative, and cost-effective electrical solutions while prioritizing customer satisfaction.</p>
                                 </div>
                             </div>
                         </div>
@@ -559,9 +596,9 @@
             <div class="py-12 md:py-20 bg-white">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="text-center mb-10 md:mb-16 animate-on-scroll slide-up">
-                        <h2 class="text-3xl md:text-5xl font-extrabold text-gray-900 uppercase">Our Products</h2>
+                        <h2 class="text-3xl md:text-5xl font-extrabold text-gray-900 uppercase" data-i18n="prods.title">Our Products</h2>
                         <div class="w-16 md:w-24 h-1 bg-theme mx-auto mt-3 md:mt-4"></div>
-                        <p class="text-sm md:text-lg text-gray-600 mt-4 max-w-3xl mx-auto">Comprehensive range of electrical products from trusted brands.</p>
+                        <p class="text-sm md:text-lg text-gray-600 mt-4 max-w-3xl mx-auto" data-i18n="prods.sub">Comprehensive range of electrical products from trusted brands.</p>
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
@@ -572,8 +609,8 @@
                                 <img src="https://i.imgur.com/eSncb2N.jpg" alt="Essential LV Products" class="w-full h-48 md:h-56 object-cover group-hover:scale-105 transition-transform duration-500">
                             </div>
                             <div class="p-5 md:p-8 flex-grow flex flex-col">
-                                <h4 class="text-lg md:text-xl font-bold text-gray-900 mb-2 uppercase">Essential LV Products</h4>
-                                <p class="text-xs md:text-sm text-gray-500 mb-3">Low Voltage electrical essentials for daily operations.</p>
+                                <h4 class="text-lg md:text-xl font-bold text-gray-900 mb-2 uppercase" data-i18n="p.essential">Essential LV Products</h4>
+                                <p class="text-xs md:text-sm text-gray-500 mb-3" data-i18n="pd.essential">Low Voltage electrical essentials for daily operations.</p>
                             </div>
                         </div>
 
@@ -583,8 +620,8 @@
                                 <img src="https://i.imgur.com/84f5z3f.jpg" alt="Industrial Electrical Automation Components" class="w-full h-48 md:h-56 object-cover group-hover:scale-105 transition-transform duration-500">
                             </div>
                             <div class="p-5 md:p-8 flex-grow flex flex-col">
-                                <h4 class="text-lg md:text-xl font-bold text-gray-900 mb-2 uppercase">Industrial Electrical Automation Components</h4>
-                                <p class="text-xs md:text-sm text-gray-500 mb-3">Industrial electrical parts and automation components.</p>
+                                <h4 class="text-lg md:text-xl font-bold text-gray-900 mb-2 uppercase" data-i18n="p.automation">Industrial Electrical Automation Components</h4>
+                                <p class="text-xs md:text-sm text-gray-500 mb-3" data-i18n="pd.automation">Industrial electrical parts and automation components.</p>
                             </div>
                         </div>
 
@@ -594,8 +631,8 @@
                                 <img src="https://i.imgur.com/uMki8jo.jpg" alt="Electrical Measuring Tools" class="w-full h-48 md:h-56 object-cover group-hover:scale-105 transition-transform duration-500">
                             </div>
                             <div class="p-5 md:p-8 flex-grow flex flex-col">
-                                <h4 class="text-lg md:text-xl font-bold text-gray-900 mb-2 uppercase">Electrical Measuring Tools</h4>
-                                <p class="text-xs md:text-sm text-gray-500 mb-3">Precision measuring instruments for electrical testing.</p>
+                                <h4 class="text-lg md:text-xl font-bold text-gray-900 mb-2 uppercase" data-i18n="p.measuring">Electrical Measuring Tools</h4>
+                                <p class="text-xs md:text-sm text-gray-500 mb-3" data-i18n="pd.measuring">Precision measuring instruments for electrical testing.</p>
                                 <div class="mt-auto flex flex-wrap items-center gap-3">
                                     <img src="https://i.imgur.com/gDd7RPJ.png" alt="Kyoritsu" class="h-8 md:h-9 w-auto object-contain">
                                     <img src="https://i.imgur.com/NYrxt9V.png" alt="Sanwa" class="h-8 md:h-9 w-auto object-contain">
@@ -610,8 +647,8 @@
                                 <img src="https://i.imgur.com/LRvUj2w.jpg" alt="Hand Tools" class="w-full h-48 md:h-56 object-cover group-hover:scale-105 transition-transform duration-500">
                             </div>
                             <div class="p-5 md:p-8 flex-grow flex flex-col">
-                                <h4 class="text-lg md:text-xl font-bold text-gray-900 mb-2 uppercase">Hand Tools</h4>
-                                <p class="text-xs md:text-sm text-gray-500 mb-3">Professional hand tools for electrical work.</p>
+                                <h4 class="text-lg md:text-xl font-bold text-gray-900 mb-2 uppercase" data-i18n="p.hand">Hand Tools</h4>
+                                <p class="text-xs md:text-sm text-gray-500 mb-3" data-i18n="pd.hand">Professional hand tools for electrical work.</p>
                             </div>
                         </div>
 
@@ -621,11 +658,11 @@
                                 <img src="https://i.imgur.com/nxbbi2E.jpg" alt="Plug & Socket IP MAN" class="w-full h-48 md:h-56 object-cover group-hover:scale-105 transition-transform duration-500">
                             </div>
                             <div class="p-5 md:p-8 flex-grow flex flex-col">
-                                <h4 class="text-lg md:text-xl font-bold text-gray-900 mb-2 uppercase">Plug &amp; Socket (IP MAN)</h4>
-                                <p class="text-xs md:text-sm text-gray-500 mb-3">Weatherproof industrial plugs and sockets. <span class="rainbow-text">Saya Tak Takut HUJAN! 💪</span></p>
+                                <h4 class="text-lg md:text-xl font-bold text-gray-900 mb-2 uppercase" data-i18n="p.plug">Plug &amp; Socket (IP MAN)</h4>
+                                <p class="text-xs md:text-sm text-gray-500 mb-3" data-i18n="pd.plug">Weatherproof industrial plugs and sockets. <span class="rainbow-text">Saya Tak Takut HUJAN! 💪</span></p>
                                 <div class="mt-auto flex flex-wrap items-center gap-2">
                                     <span class="inline-block bg-gray-100 text-gray-600 text-xs font-semibold px-3 py-1 rounded-full border border-gray-200">IP MAN</span>
-                                    <span class="inline-block bg-gray-100 text-gray-600 text-xs font-semibold px-3 py-1 rounded-full border border-gray-200">Weatherproof</span>
+                                    <span class="inline-block bg-gray-100 text-gray-600 text-xs font-semibold px-3 py-1 rounded-full border border-gray-200" data-i18n="b.weatherproof">Weatherproof</span>
                                 </div>
                             </div>
                         </div>
@@ -636,8 +673,8 @@
                                 <img src="https://i.imgur.com/qAl7Uid.jpg" alt="Lighting" class="w-full h-48 md:h-56 object-cover group-hover:scale-105 transition-transform duration-500">
                             </div>
                             <div class="p-5 md:p-8 flex-grow flex flex-col">
-                                <h4 class="text-lg md:text-xl font-bold text-gray-900 mb-2 uppercase">Lighting</h4>
-                                <p class="text-xs md:text-sm text-gray-500 mb-3">Complete lighting solutions for residential and commercial.</p>
+                                <h4 class="text-lg md:text-xl font-bold text-gray-900 mb-2 uppercase" data-i18n="p.lighting">Lighting</h4>
+                                <p class="text-xs md:text-sm text-gray-500 mb-3" data-i18n="pd.lighting">Complete lighting solutions for residential and commercial.</p>
                                 <div class="mt-auto flex flex-wrap items-center gap-3">
                                     <img src="https://i.imgur.com/oSk56i0.png" alt="Philips" class="h-8 md:h-9 w-auto object-contain">
                                     <a href="pdfs/YLI-ME.pdf" target="_blank" rel="noopener noreferrer"><img src="https://i.imgur.com/gF3QWyt.png" alt="YLI" class="h-8 md:h-9 w-auto object-contain hover:opacity-80 transition-opacity"></a>
@@ -654,8 +691,8 @@
                                 <img src="https://i.imgur.com/kYI2IP7.jpg" alt="Switches" class="w-full h-48 md:h-56 object-cover group-hover:scale-105 transition-transform duration-500">
                             </div>
                             <div class="p-5 md:p-8 flex-grow flex flex-col">
-                                <h4 class="text-lg md:text-xl font-bold text-gray-900 mb-2 uppercase">Switches</h4>
-                                <p class="text-xs md:text-sm text-gray-500 mb-3">Quality switches and wiring accessories.</p>
+                                <h4 class="text-lg md:text-xl font-bold text-gray-900 mb-2 uppercase" data-i18n="p.switches">Switches</h4>
+                                <p class="text-xs md:text-sm text-gray-500 mb-3" data-i18n="pd.switches">Quality switches and wiring accessories.</p>
                                 <div class="mt-auto grid grid-cols-2 gap-2 items-center justify-items-center">
                                     <img src="https://i.imgur.com/lkYhMTn.png" alt="Honeywell" class="h-8 md:h-9 w-auto object-contain">
                                     <img src="https://i.imgur.com/CEDw9DK.png" alt="Schneider" class="h-8 md:h-9 w-auto object-contain">
@@ -671,8 +708,8 @@
                                 <img src="https://i.imgur.com/jpqHtEx.jpg" alt="PVC Pipe" class="w-full h-48 md:h-56 object-cover group-hover:scale-105 transition-transform duration-500">
                             </div>
                             <div class="p-5 md:p-8 flex-grow flex flex-col">
-                                <h4 class="text-lg md:text-xl font-bold text-gray-900 mb-2 uppercase">PVC Pipe</h4>
-                                <p class="text-xs md:text-sm text-gray-500 mb-3">PVC pipes and conduit solutions for electrical and industrial use.</p>
+                                <h4 class="text-lg md:text-xl font-bold text-gray-900 mb-2 uppercase" data-i18n="p.pvc">PVC Pipe</h4>
+                                <p class="text-xs md:text-sm text-gray-500 mb-3" data-i18n="pd.pvc">PVC pipes and conduit solutions for electrical and industrial use.</p>
                                 <div class="mt-auto flex flex-wrap items-center gap-3">
                                     <img src="https://i.imgur.com/DMusJmV.png" alt="Megahock" class="h-8 md:h-9 w-auto object-contain">
                                     <a href="pdfs/Fighter.pdf" target="_blank" rel="noopener noreferrer"><img src="https://i.imgur.com/9gTJZk1.png" alt="Fighter" class="h-8 md:h-9 w-auto object-contain hover:opacity-80 transition-opacity"></a>
@@ -689,8 +726,8 @@
                                 <img src="https://i.imgur.com/Ev6kHem.jpg" alt="Trunking" class="w-full h-48 md:h-56 object-cover group-hover:scale-105 transition-transform duration-500">
                             </div>
                             <div class="p-5 md:p-8 flex-grow flex flex-col">
-                                <h4 class="text-lg md:text-xl font-bold text-gray-900 mb-2 uppercase">Trunking</h4>
-                                <p class="text-xs md:text-sm text-gray-500 mb-3">Cable trunking and management systems.</p>
+                                <h4 class="text-lg md:text-xl font-bold text-gray-900 mb-2 uppercase" data-i18n="p.trunking">Trunking</h4>
+                                <p class="text-xs md:text-sm text-gray-500 mb-3" data-i18n="pd.trunking">Cable trunking and management systems.</p>
                                 <div class="mt-auto flex flex-wrap items-center gap-3">
                                     <a href="pdfs/U-Li.pdf" target="_blank" rel="noopener noreferrer"><img src="https://i.imgur.com/FFY00x3.png" alt="U-Li" class="h-16 md:h-[72px] w-auto object-contain hover:opacity-80 transition-opacity"></a>
                                     <a href="pdfs/WireMesh.pdf" target="_blank" rel="noopener noreferrer"><img src="https://i.imgur.com/BJCOfNq.png" alt="Wire Mesh Tray" class="h-8 md:h-9 w-auto object-contain hover:opacity-80 transition-opacity"></a>
@@ -704,8 +741,8 @@
                                 <img src="https://i.imgur.com/lzhFNIb.jpg" alt="Fans" class="w-full h-48 md:h-56 object-cover group-hover:scale-105 transition-transform duration-500">
                             </div>
                             <div class="p-5 md:p-8 flex-grow flex flex-col">
-                                <h4 class="text-lg md:text-xl font-bold text-gray-900 mb-2 uppercase">Fans</h4>
-                                <p class="text-xs md:text-sm text-gray-500 mb-2">Ceiling Fans & Exhaust Fans (Industrial & House).</p>
+                                <h4 class="text-lg md:text-xl font-bold text-gray-900 mb-2 uppercase" data-i18n="p.fans">Fans</h4>
+                                <p class="text-xs md:text-sm text-gray-500 mb-2" data-i18n="pd.fans">Ceiling Fans & Exhaust Fans (Industrial & House).</p>
                                 <div class="flex flex-wrap items-center justify-center gap-3 mt-2">
                                     <img src="https://i.imgur.com/68piffK.png" alt="Brand" class="h-8 md:h-9 w-auto object-contain">
                                     <img src="https://i.imgur.com/FJGxWqe.png" alt="Brand" class="h-8 md:h-9 w-auto object-contain">
@@ -722,8 +759,8 @@
                                 <img src="https://i.imgur.com/JTcio9z.jpg" alt="Water Heater - Joven" class="w-full h-48 md:h-56 object-cover group-hover:scale-105 transition-transform duration-500">
                             </div>
                             <div class="p-5 md:p-8 flex-grow flex flex-col">
-                                <h4 class="text-lg md:text-xl font-bold text-gray-900 mb-2 uppercase">Water Heater</h4>
-                                <p class="text-xs md:text-sm text-gray-500 mb-3">Instant and storage water heating solutions. Premium quality from Joven.</p>
+                                <h4 class="text-lg md:text-xl font-bold text-gray-900 mb-2 uppercase" data-i18n="p.water">Water Heater</h4>
+                                <p class="text-xs md:text-sm text-gray-500 mb-3" data-i18n="pd.water">Instant and storage water heating solutions. Premium quality from Joven.</p>
                                 <div class="mt-auto flex flex-wrap items-center gap-3">
                                     <img src="https://i.imgur.com/Gh74pzP.png" alt="Joven" class="h-8 md:h-9 w-auto object-contain">
                                 </div>
@@ -736,12 +773,12 @@
                                 <img src="https://i.imgur.com/ZBLaWfR.png" alt="Cables" class="w-full h-48 md:h-56 object-cover group-hover:scale-105 transition-transform duration-500">
                             </div>
                             <div class="p-5 md:p-8 flex-grow flex flex-col">
-                                <h4 class="text-lg md:text-xl font-bold text-gray-900 mb-2 uppercase">Cables</h4>
-                                <p class="text-xs md:text-sm text-gray-500 mb-3">Wide range of high-quality electrical cables including PVC insulated, armoured, fire-resistant, and industrial-grade wiring solutions for residential, commercial, and industrial applications.</p>
+                                <h4 class="text-lg md:text-xl font-bold text-gray-900 mb-2 uppercase" data-i18n="p.cables">Cables</h4>
+                                <p class="text-xs md:text-sm text-gray-500 mb-3" data-i18n="pd.cables">Wide range of high-quality electrical cables including PVC insulated, armoured, fire-resistant, and industrial-grade wiring solutions for residential, commercial, and industrial applications.</p>
                                 <div class="mt-auto flex flex-wrap gap-2">
-                                    <span class="inline-block bg-gray-100 text-gray-600 text-xs font-semibold px-3 py-1 rounded-full border border-gray-200">PVC Insulated</span>
-                                    <span class="inline-block bg-gray-100 text-gray-600 text-xs font-semibold px-3 py-1 rounded-full border border-gray-200">Armoured</span>
-                                    <span class="inline-block bg-gray-100 text-gray-600 text-xs font-semibold px-3 py-1 rounded-full border border-gray-200">Fire Resistant</span>
+                                    <span class="inline-block bg-gray-100 text-gray-600 text-xs font-semibold px-3 py-1 rounded-full border border-gray-200" data-i18n="b.pvc">PVC Insulated</span>
+                                    <span class="inline-block bg-gray-100 text-gray-600 text-xs font-semibold px-3 py-1 rounded-full border border-gray-200" data-i18n="b.armoured">Armoured</span>
+                                    <span class="inline-block bg-gray-100 text-gray-600 text-xs font-semibold px-3 py-1 rounded-full border border-gray-200" data-i18n="b.fr">Fire Resistant</span>
                                 </div>
                             </div>
                         </div>
@@ -752,8 +789,8 @@
                                 <img src="https://i.imgur.com/Q522THi.jpg" alt="Exit Signs & Emergency Lights" class="w-full h-48 md:h-56 object-cover group-hover:scale-105 transition-transform duration-500">
                             </div>
                             <div class="p-5 md:p-8 flex-grow flex flex-col">
-                                <h4 class="text-lg md:text-xl font-bold text-gray-900 mb-2 uppercase">Exit Signs &amp; Emergency Lights</h4>
-                                <p class="text-xs md:text-sm text-gray-500 mb-3">Safety signage and emergency illumination.</p>
+                                <h4 class="text-lg md:text-xl font-bold text-gray-900 mb-2 uppercase" data-i18n="p.exit">Exit Signs &amp; Emergency Lights</h4>
+                                <p class="text-xs md:text-sm text-gray-500 mb-3" data-i18n="pd.exit">Safety signage and emergency illumination.</p>
                                 <div class="mt-auto flex flex-wrap items-center gap-3">
                                     <a href="pdfs/Vitalite.pdf" target="_blank" rel="noopener noreferrer"><img src="https://i.imgur.com/L1biKxt.png" alt="Vitalite" class="h-8 md:h-9 w-auto object-contain hover:opacity-80 transition-opacity"></a>
                                 </div>
@@ -766,8 +803,8 @@
                                 <img src="https://i.imgur.com/zplxlez.png" alt="Metal Box" class="w-full h-48 md:h-56 object-cover group-hover:scale-105 transition-transform duration-500">
                             </div>
                             <div class="p-5 md:p-8 flex-grow flex flex-col">
-                                <h4 class="text-lg md:text-xl font-bold text-gray-900 mb-2 uppercase">Metal Box</h4>
-                                <p class="text-xs md:text-sm text-gray-500 mb-3">Metal boxes for electrical installation.</p>
+                                <h4 class="text-lg md:text-xl font-bold text-gray-900 mb-2 uppercase" data-i18n="p.metal">Metal Box</h4>
+                                <p class="text-xs md:text-sm text-gray-500 mb-3" data-i18n="pd.metal">Metal boxes for electrical installation.</p>
                                 <div class="mt-auto flex flex-wrap items-center gap-3">
                                     <a href="pdfs/YLI.pdf" target="_blank" rel="noopener noreferrer"><img src="https://i.imgur.com/gF3QWyt.png" alt="YLI" class="h-8 md:h-9 w-auto object-contain hover:opacity-80 transition-opacity"></a>
                                 </div>
@@ -788,7 +825,7 @@
                 
                 <!-- HQ Details -->
                 <div class="col-span-1 md:col-span-2">
-                    <h3 class="text-xl md:text-2xl font-bold text-theme mb-1 md:mb-2 uppercase">Headquarters</h3>
+                    <h3 class="text-xl md:text-2xl font-bold text-theme mb-1 md:mb-2 uppercase" data-i18n="ft.hq">Headquarters</h3>
                     <h5 class="text-base md:text-xl font-bold mb-3 md:mb-4">BGS ELECTRICAL TRADING</h5>
                     <ul class="space-y-3 md:space-y-4 text-sm md:text-base">
                         <li class="flex items-start group">
@@ -808,18 +845,18 @@
 
                 <!-- Operation Hours -->
                 <div>
-                    <h3 class="text-xl md:text-2xl font-bold text-theme mb-3 md:mb-4 uppercase">Operation Hours</h3>
+                    <h3 class="text-xl md:text-2xl font-bold text-theme mb-3 md:mb-4 uppercase" data-i18n="ft.hours">Operation Hours</h3>
                     <ul class="space-y-2 md:space-y-3 text-gray-300 text-sm md:text-base">
                         <li class="flex items-center">
                             <i class="far fa-clock mr-3 text-theme"></i>
-                            <span>Mon - Fri : 8:30am - 6:00pm</span>
+                            <span data-i18n="ft.monfri">Mon - Fri : 8:30am - 6:00pm</span>
                         </li>
                         <li class="flex items-center">
                             <i class="far fa-clock mr-3 text-theme"></i>
-                            <span>Saturday : 8:30am - 5:00pm</span>
+                            <span data-i18n="ft.sat">Saturday : 8:30am - 5:00pm</span>
                         </li>
                     </ul>
-                    <p class="mt-3 md:mt-4 text-xs md:text-sm text-gray-400 italic">
+                    <p class="mt-3 md:mt-4 text-xs md:text-sm text-gray-400 italic" data-i18n="ft.sunday">
                         Sunday is opening alternatively, please contact us in advance to check our availability.
                     </p>
                 </div>
@@ -827,7 +864,7 @@
 
             <!-- Copyright -->
             <div class="flex flex-col md:flex-row justify-between items-center text-xs md:text-sm text-gray-400 text-center md:text-left">
-                <p>Copyright &copy; 2026 BGS ELECTRICAL TRADING. All Rights Reserved.</p>
+                <p data-i18n="ft.copy">Copyright &copy; 2026 BGS ELECTRICAL TRADING. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
@@ -836,6 +873,9 @@
     <a href="https://wa.me/60122997839" target="_blank" class="fixed bottom-6 right-6 z-50 bg-[#0ABAB5] text-white w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center text-2xl md:text-3xl shadow-lg hover:bg-[#099E9A] hover:scale-110 transition-transform">
         <i class="fab fa-whatsapp"></i>
     </a>
+
+    <!-- i18n EN/BM language engine -->
+    <script src="i18n.js"></script>
 
     <!-- Application Script for Tab Switching & Scroll Animation -->
     <script>
