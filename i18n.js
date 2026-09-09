@@ -59,7 +59,7 @@
       'pd.trunking': 'Sistem trunking dan pengurusan kabel.',
       'pd.fans': 'Kipas Siling & Kipas Ekzos (Industri & Rumah).',
       'pd.water': 'Penyelesaian pemanas air segera dan simpanan. Kualiti premium daripada Joven.',
-      'pd.cables': 'Pelbagai kabel elektrik berkualiti tinggi termasuk kabel berpenebat PVC, berperisai, kalis api, dan pendawaian gred industri untuk aplikasi kediaman, komersial, dan industri.',
+      'pd.cables': 'Kabel berkualiti tinggi: berpenebat PVC, berperisai, kalis api &amp; pendawaian gred industri.',
       'pd.exit': 'Papan tanda keselamatan dan pencahayaan kecemasan.',
       'pd.metal': 'Kotak logam untuk pemasangan elektrik.',
       'b.weatherproof': 'Kalis Cuaca',
