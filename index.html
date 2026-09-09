@@ -124,15 +124,6 @@
         .nav-item:hover .dropdown-arrow {
             transform: rotate(180deg);
         }
-        .dropdown-overlay {
-            position: fixed;
-            inset: 0;
-            z-index: 99;
-            display: none;
-        }
-        .nav-item:hover .dropdown-overlay {
-            display: block;
-        }
 
         /* Rainbow Shine Animation */
         .rainbow-shine-wrapper {
@@ -263,7 +254,6 @@
                         <button onclick="showPage('products')" class="text-gray-700 hover-text-theme px-3 py-2 font-medium text-lg uppercase transition-colors flex items-center gap-1">
                             <span data-i18n="nav.products">Products</span> <span class="dropdown-arrow">▼</span>
                         </button>
-                        <div class="dropdown-overlay"></div>
                         <div class="dropdown-menu" id="products-dropdown">
                             <a href="javascript:void(0)" onclick="goToProduct('prod-essential-lv')" data-i18n="p.essential">Essential LV Products</a>
                             <a href="javascript:void(0)" onclick="goToProduct('prod-cables')" data-i18n="p.cables">Cables</a>
