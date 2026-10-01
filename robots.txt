@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Block nothing — this is a public brochure site.
+Disallow:
+
+Sitemap: https://bgs-electrical.com/sitemap.xml
