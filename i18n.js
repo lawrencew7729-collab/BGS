@@ -30,7 +30,7 @@
       'p.earthing': 'Pembumian &amp; Perlindungan Kilat',
       'pd.earthing': 'Sistem pembumian dan perlindungan kilat untuk pemasangan yang selamat dan boleh dipercayai.',
       'hero.title': 'Kuasa Untuk Masa Depan Anda',
-      'hero.sub': 'BGS ELECTRICAL TRADING ialah pembekal utama anda untuk kabel, paip, dan aksesori elektrik yang sangat boleh dipercayai.',
+      'hero.sub': 'Pembekal elektrik di Kuala Lumpur — dipercayai untuk kabel, suis, pencahayaan dan automasi di seluruh Lembah Klang.',
       'hero.cta': 'Terokai Produk',
       'f1.title': 'Kualiti Boleh Dipercayai',
       'f1.desc': 'Bekalan elektrik yang diuji dan diperakui untuk keselamatan dan prestasi maksimum.',
