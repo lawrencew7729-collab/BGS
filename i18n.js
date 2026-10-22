@@ -27,6 +27,8 @@
       'p.exit': 'Tanda Keluar & Lampu Kecemasan',
       'p.exit.m': 'Tanda Keluar & Kecemasan',
       'p.metal': 'Kotak Logam',
+      'p.earthing': 'Pembumian &amp; Perlindungan Kilat',
+      'pd.earthing': 'Sistem pembumian dan perlindungan kilat untuk pemasangan yang selamat dan boleh dipercayai.',
       'hero.title': 'Kuasa Untuk Masa Depan Anda',
       'hero.sub': 'BGS ELECTRICAL TRADING ialah pembekal utama anda untuk kabel, paip, dan aksesori elektrik yang sangat boleh dipercayai.',
       'hero.cta': 'Terokai Produk',
